@@ -1,0 +1,118 @@
+.auth-background {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: #f1f1f4;
+}
+
+.auth-form {
+  width: 300px;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin: 10% auto;
+  padding: 20px;
+  text-align: center;
+  border-color: #fff;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.auth-form h1 {
+  font-size: 24px;
+}
+
+.auth-form label {
+  display: flex;
+}
+
+.input-box {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  border: 1px solid #999;
+  outline: none;
+}
+
+.input-box:focus {
+  border: 1px solid #1e1ed2;
+  box-shadow: 0 0 2px #1e1ed2;
+}
+
+.itemLabel {
+  margin-top: 10px;
+  user-select: none;
+  cursor: pointer;
+  align-items: center;
+  font-size: 13px;
+}
+
+.itemLabel input {
+  margin-right: 5px;
+}
+
+button {
+  background-color: #1e1ed2;
+  font-family: "Inter";
+  color: #fff;
+  width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #1e78d2;
+}
+
+.google-btn {
+  padding: 0;
+  background: white;
+  color: #444;
+  border: thin solid grey;
+  box-shadow: 1px 1px 1px grey;
+  border-width: 1.5px;
+  white-space: nowrap;
+}
+
+.google-btn-icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2.25em;
+}
+
+.google-btn-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: gray;
+  height: 1px;
+  border: 0;
+}
+
+.or {
+  background: #fff;
+  width: 40px;
+  margin: -20px auto 0px;
+}
+
+h1,
+label,
+p {
+  font-family: "Inter";
+  color: #2e2e38;
+}
