@@ -1,3 +1,4 @@
+/*  Form css  */
 .auth-background {
   margin: 0;
   padding: 0;
@@ -30,6 +31,8 @@
   display: flex;
 }
 
+/*  email and password input css  */
+
 .input-box {
   border-radius: 5px;
   padding: 10px;
@@ -44,7 +47,9 @@
   box-shadow: 0 0 2px #1e1ed2;
 }
 
-.itemLabel {
+/*  checkbox css  */
+
+.checkbox {
   margin-top: 10px;
   user-select: none;
   cursor: pointer;
@@ -52,10 +57,11 @@
   font-size: 13px;
 }
 
-.itemLabel input {
+.checkbox input {
   margin-right: 5px;
 }
 
+/*  buttons css  */
 button {
   background-color: #1e1ed2;
   font-family: "Inter";
@@ -73,6 +79,8 @@ button {
 button:active {
   background-color: #1e78d2;
 }
+
+/*  google button css  */
 
 .google-btn {
   padding: 0;
@@ -95,6 +103,25 @@ button:active {
   vertical-align: middle;
 }
 
+.google-btn > p {
+  font-size: 15px;
+}
+/*  paragraph "or" css  */
+
+.or {
+  background: #fff;
+  width: 40px;
+  margin: -20px auto 0px;
+}
+
+/*  error text css  */
+div.error-text > p {
+  color: red;
+  text-align: left;
+  font-size: small;
+}
+
+/*  html elements css  */
 hr {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -104,10 +131,8 @@ hr {
   border: 0;
 }
 
-.or {
-  background: #fff;
-  width: 40px;
-  margin: -20px auto 0px;
+p {
+  font-size: small;
 }
 
 h1,
