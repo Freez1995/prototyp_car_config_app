@@ -1,3 +1,8 @@
+/*  Font for both Components css  */
+* {
+  font-family: "Inter";
+}
+
 /*  Form css  */
 .auth-background {
   margin: 0;
@@ -7,14 +12,14 @@
   left: 0;
   right: 0;
   height: 100%;
-  background: #f1f1f4;
+  background: #fff;
 }
 
 .auth-form {
   width: 300px;
   background: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 20px;
   text-align: center;
   border-color: #fff;
@@ -32,7 +37,6 @@
 }
 
 /*  email and password input css  */
-
 .input-box {
   border-radius: 5px;
   padding: 10px;
@@ -47,8 +51,12 @@
   box-shadow: 0 0 2px #1e1ed2;
 }
 
-/*  checkbox css  */
-
+/*  div for checkbox and forgot password anchor (Login Component) css  */
+.password-row {
+  align-items: center;
+  font-size: 13px;
+  display: flex;
+}
 .checkbox {
   margin-top: 10px;
   user-select: none;
@@ -59,6 +67,12 @@
 
 .checkbox input {
   margin-right: 5px;
+}
+
+.password-row a {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 /*  buttons css  */
@@ -80,8 +94,12 @@ button:active {
   background-color: #1e78d2;
 }
 
-/*  google button css  */
+button:disabled {
+  background-color: #999;
+  user-select: none;
+}
 
+/*  google button css  */
 .google-btn {
   padding: 0;
   background: white;
@@ -106,19 +124,19 @@ button:active {
 .google-btn > p {
   font-size: 15px;
 }
-/*  paragraph "or" css  */
 
+/*  paragraph "or" css  */
 .or {
   background: #fff;
   width: 40px;
   margin: -20px auto 0px;
 }
 
-/*  error text css  */
-div.error-text > p {
-  color: red;
-  text-align: left;
-  font-size: small;
+/*  PasswordCheckComponent -- Inside FormCheck css  */
+.password-checklist {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: smaller;
 }
 
 /*  html elements css  */
@@ -131,13 +149,17 @@ hr {
   border: 0;
 }
 
-p {
+h1 {
+  margin-bottom: 30px;
+}
+
+p,
+a {
   font-size: small;
 }
 
 h1,
 label,
 p {
-  font-family: "Inter";
   color: #2e2e38;
 }

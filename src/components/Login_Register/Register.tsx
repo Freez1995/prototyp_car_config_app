@@ -1,63 +1,31 @@
 import "./Login_Register.css";
 import googleIcon from "../../assets/icons/google_logo_icon.svg";
-import { RegisterForm, ErrorForm } from "../../types";
+import { ShowPassword, RegisterForm } from "./FormCheck";
 import { useState } from "react";
+import { PasswordCheckComponent, EmailCheckRegex } from "./FormCheck";
 
 export const Register = () => {
-  const initialValues: RegisterForm = {
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-  const [passwordCheckbox, setPasswordCheckbox] = useState(false);
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState<ErrorForm>({
+  const [formValues, setFormValues] = useState<RegisterForm>({
     email: "",
     password: "",
     confirmPassword: "",
   });
-  // Checkbox - show/hide password
-  let passwordType: string = "password";
-  if (passwordCheckbox === true) {
-    passwordType = "text";
-  } else {
-    passwordType = "password";
-  }
+  const [passwordCheckbox, setPasswordCheckbox] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState(false);
 
-  // validate form
-  const validate = (values: RegisterForm): ErrorForm => {
-    const errors = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-    };
-    const regex = new RegExp(
-      /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required!";
-    } else if (values.password.length < 6) {
-      errors.password = "Password must be more than 6 characters!";
-    } else if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = "Passwords must match!";
-    }
-    return errors;
+  // Passing into Child Compnent "PasswordCheckComponent" to update passwordValidation state
+  const handlePasswordValidationChange = (isValid: boolean) => {
+    setPasswordValidation(isValid);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
   };
 
   return (
     <div className="auth-background">
       <div className="auth-form">
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit}>
           <h1>Sign up</h1>
           <label>
             <b>Email</b>
@@ -66,41 +34,38 @@ export const Register = () => {
             type="email"
             className="input-box"
             placeholder="Enter your email"
+            required={true}
             onChange={(e) =>
               setFormValues({ ...formValues, email: e.target.value })
             }
           ></input>
-          <div className="error-text">
-            <p>{formErrors.email}</p>
-          </div>
           <label>
             <b>Password</b>
           </label>
           <input
-            type={passwordType}
+            type={ShowPassword(passwordCheckbox)}
             className="input-box"
             placeholder="Enter your password"
             onChange={(e) =>
               setFormValues({ ...formValues, password: e.target.value })
             }
           ></input>
-          <div className="error-text">
-            <p>{formErrors.password}</p>
-          </div>
+          <PasswordCheckComponent
+            value={formValues.password}
+            onValidationChange={handlePasswordValidationChange}
+            valueAgain={formValues.confirmPassword}
+          />
           <label>
             <b>Confirm Password</b>
           </label>
           <input
-            type={passwordType}
+            type={ShowPassword(passwordCheckbox)}
             className="input-box"
             placeholder="Confirm your password"
             onChange={(e) =>
               setFormValues({ ...formValues, confirmPassword: e.target.value })
             }
           ></input>
-          <div className="error-text">
-            <p>{formErrors.confirmPassword}</p>
-          </div>
           <label htmlFor="checkbox-showPassword" className="checkbox">
             <input
               type="checkbox"
@@ -109,7 +74,11 @@ export const Register = () => {
             />
             Show password
           </label>
-          <button type="submit" className="signin-btn">
+          <button
+            type="submit"
+            className="signin-btn"
+            disabled={!passwordValidation || !EmailCheckRegex(formValues.email)}
+          >
             Sign up
           </button>
           <hr />

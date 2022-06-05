@@ -1,52 +1,22 @@
 import "./Login_Register.css";
 import googleIcon from "../../assets/icons/google_logo_icon.svg";
-import { LoginForm, ErrorForm } from "../../types";
 import { useState } from "react";
+import { LoginForm, ShowPassword } from "./FormCheck";
 
 export const Login = () => {
-  const initialValues: LoginForm = { email: "", password: "" };
   const [passwordCheckbox, setPasswordCheckbox] = useState(false);
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState<ErrorForm>({
-    email: "",
-    password: "",
-  });
-
-  let passwordType: string = "password";
-  if (passwordCheckbox === true) {
-    passwordType = "text";
-  } else {
-    passwordType = "password";
-  }
+  const [formValues, setFormValues] = useState<LoginForm>(Object);
+  const pattern =
+    "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
-  };
-
-  const validate = (values: LoginForm): ErrorForm => {
-    const errors = {
-      email: "",
-      password: "",
-    };
-    const regex = new RegExp(
-      /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required!";
-    }
-    return errors;
   };
 
   return (
     <div className="auth-background">
       <div className="auth-form">
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit}>
           <h1>Sign in</h1>
           <label htmlFor="email">
             <b>Email</b>
@@ -56,36 +26,37 @@ export const Login = () => {
             className="input-box"
             placeholder="Enter your email"
             id="email"
+            required={true}
             onChange={(e) =>
               setFormValues({ ...formValues, email: e.target.value })
             }
           ></input>
-          <div className="error-text">
-            <p>{formErrors.email}</p>
-          </div>
           <label htmlFor="password">
             <b>Password</b>
           </label>
           <input
-            type={passwordType}
+            type={ShowPassword(passwordCheckbox)}
             className="input-box"
             placeholder="Enter your password"
-            id="password"
             onChange={(e) =>
               setFormValues({ ...formValues, password: e.target.value })
             }
+            required={true}
+            autoComplete={"off"}
           ></input>
-          <div className="error-text">
-            <p>{formErrors.password}</p>
+          <div className="password-row">
+            <div>
+              <label htmlFor="checkbox-showPassword" className="checkbox">
+                <input
+                  type="checkbox"
+                  id="checkbox-showPassword"
+                  onChange={(e) => setPasswordCheckbox(e.target.checked)}
+                />
+                Show password
+              </label>
+            </div>
+            <a href="#">Forgot password?</a>
           </div>
-          <label htmlFor="checkbox-showPassword" className="checkbox">
-            <input
-              type="checkbox"
-              id="checkbox-showPassword"
-              onChange={(e) => setPasswordCheckbox(e.target.checked)}
-            />
-            Show password
-          </label>
           <label htmlFor="checkbox-rememberMe" className="checkbox">
             <input type="checkbox" id="checkbox-rememberMe" />
             Remember me
