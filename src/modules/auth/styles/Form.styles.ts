@@ -1,14 +1,14 @@
 import { css } from '@emotion/react';
 
 export const formContainer = css`
-  position: absolute;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const form = css`
   width: 350px;
-  height: fit-content;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
     rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   padding: 40px;
