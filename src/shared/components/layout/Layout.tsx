@@ -1,16 +1,10 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-interface Props {
-  auth: boolean;
-}
-
-export const Layout: React.FC<Props> = ({ auth }) => {
-  return auth ? (
+export const Layout: React.FC = () => {
+  return (
     <main>
       <Outlet />
     </main>
-  ) : (
-    <Navigate to="/login" />
   );
 };
