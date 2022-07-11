@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import * as styles from './GoogleButton.styles';
-import googleIcon from '../../../../assets/auth/googleIcon.svg';
+import googleIcon from 'assets/auth/googleIcon.svg';
 
-export const GoogleButton: React.FC<{ buttonText: string }> = ({
-  buttonText,
-}) => {
+interface Props {
+  buttonText: string;
+}
+
+export const GoogleButton: React.FC<Props> = ({ buttonText }) => {
   return (
     <button css={styles.googleButton}>
       <img css={styles.googleButtonIcon} src={googleIcon} alt="Google icon" />

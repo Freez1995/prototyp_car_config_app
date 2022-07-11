@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 export const googleButton = css`
   display: flex;
   align-items: center;
-  column-gap: 20px;
+  justify-content: center;
   width: 100%;
   margin: 10px 0;
   padding: 3px 10px;
@@ -19,4 +19,5 @@ export const googleButton = css`
 
 export const googleButtonIcon = css`
   width: 40px;
+  margin-right: 10px;
 `;
