@@ -1,2 +1,3 @@
-export * from './login-form';
-export * from './register-form';
+export * from './LoginForm';
+export * from './RegisterForm';
+export * from './GoogleButton';

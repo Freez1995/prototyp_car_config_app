@@ -1,50 +1,49 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React from 'react';
+import * as styles from '../styles/Form.styles';
 import { Link } from 'react-router-dom';
-import { GoogleButton } from '../google-button';
-import * as styles from '../../styles/Form.styles';
-
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { GoogleButton } from './GoogleButton';
+import { useHandleLoginForm } from '../hooks';
+import { FORM_ERRORS } from '../const';
+import { ErrorForm } from './ErrorForm';
 
 export const LoginForm: React.FC = () => {
-  const [formValues, setFormValues] = useState<FormValues>({
-    email: '',
-    password: '',
-  });
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValues({ ...formValues, email: e.target.value });
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValues({ ...formValues, password: e.target.value });
-  };
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  const {
+    register,
+    showPassword,
+    handleShowPassword,
+    handleSubmit,
+    onSubmit,
+    errors,
+  } = useHandleLoginForm();
 
   return (
     <div css={styles.formContainer}>
-      <form css={styles.form}>
+      <form css={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h1>Sign in</h1>
         <GoogleButton buttonText="Sign in with Google" />
         <hr />
         <div css={styles.inputContainer}>
           <label css={styles.inputLabel}>Email</label>
-          <input css={styles.input} type="email" onChange={handleEmailChange} />
+          <input
+            css={styles.input}
+            type="email"
+            {...register('email', {
+              required: FORM_ERRORS.fieldRequired,
+            })}
+          />
+          <ErrorForm error={errors.email} />
         </div>
         <div css={styles.inputContainer}>
           <label css={styles.inputLabel}>Password</label>
           <input
             css={styles.input}
             type={showPassword ? 'text' : 'password'}
-            onChange={handlePasswordChange}
+            {...register('password', {
+              required: FORM_ERRORS.fieldRequired,
+            })}
           />
+          <ErrorForm error={errors.password} />
         </div>
         <div css={styles.checkboxContainer}>
           <input type="checkbox" onChange={handleShowPassword} />

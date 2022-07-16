@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import * as styles from './GoogleButton.styles';
+import * as styles from 'modules/auth/styles/GoogleButton.styles';
 import googleIcon from 'assets/auth/googleIcon.svg';
 
 interface Props {

@@ -41,12 +41,25 @@ export const input = css`
   border: 2px solid #ebebeb;
   border-radius: 5px;
   outline: none;
+`;
+
+export const inputValid = css`
+  ${input}
   &:hover {
     border-color: #3f3fe4;
   }
   &:focus {
     border-color: #3f3fe4;
     box-shadow: 0 0 2px #3f3fe4;
+  }
+`;
+
+export const inputInvalid = css`
+  ${input}
+  border: 2px solid #ea8888;
+  &:focus {
+    border-color: #ea8888;
+    box-shadow: 0 0 2px #ea8888;
   }
 `;
 
@@ -82,10 +95,20 @@ export const redirectContainer = css`
   }
 `;
 
-export const passwordCheckList = css`
-  font-size: 14px;
+export const errorForm = css`
+  list-style: none;
+  li {
+    display: flex;
+    margin: 5px 0;
+    color: #ea8888;
+    font-size: 14px;
+  }
+  img {
+    width: 15px;
+    margin-right: 8px;
+  }
 `;
 
-export const passwordCheckListHidden = css`
+export const hideErrorForm = css`
   display: none;
 `;
