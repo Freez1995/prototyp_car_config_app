@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FORM_ERRORS } from '../const';
+import { useFirebaseAuth } from './useFirebaseAuth';
 
 interface RegisterFormValues {
   email: string;
   password: string;
   confirmPassword: string;
+  authPersistence: boolean;
+  showPassword: boolean;
 }
 export function useHandleRegisterForm() {
   const {
@@ -13,21 +15,20 @@ export function useHandleRegisterForm() {
     handleSubmit,
     formState: { errors },
     watch,
-    trigger,
   } = useForm<RegisterFormValues>({
     defaultValues: {
       email: '',
       password: '',
       confirmPassword: '',
+      authPersistence: false,
+      showPassword: false,
     },
     criteriaMode: 'all',
   });
-  const [showPassword, setShowPassword] = useState(false);
   const passwordValue = watch('password');
-
-  function handleShowPassword() {
-    setShowPassword(!showPassword);
-  }
+  const showPasswordState = watch('showPassword');
+  const authPersistence = watch('authPersistence');
+  const { handleSignUp } = useFirebaseAuth();
 
   function validatePwdLetters(value: string) {
     return /((?=.*[a-z])(?=.*[A-Z]))/.test(value) || FORM_ERRORS.pwdLetterError;
@@ -45,21 +46,17 @@ export function useHandleRegisterForm() {
     return value === passwordValue || FORM_ERRORS.matchPasswordsError;
   }
 
-  function onSubmit(data: RegisterFormValues) {
-    alert(JSON.stringify(data));
+  function onSubmit({ email, password, authPersistence }: RegisterFormValues) {
+    handleSignUp({ email, password, authPersistence });
   }
-
-  useEffect(() => {
-    passwordValue !== '' && trigger('confirmPassword');
-  }, [passwordValue, trigger]);
 
   return {
     register,
     handleSubmit,
     errors,
     onSubmit,
-    showPassword,
-    handleShowPassword,
+    showPasswordState,
+    authPersistence,
     validatePwdLetters,
     validatePwdNumber,
     validatePwdLenght,

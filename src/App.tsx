@@ -1,3 +1,4 @@
+import { ForgotPassword } from 'modules';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Auth, Layout } from 'shared';
@@ -12,6 +13,7 @@ export const App: React.FC = () => {
       <Route path="/" element={<Auth />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
       </Route>
     </Routes>
   );

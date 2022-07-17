@@ -13,8 +13,8 @@ export const RegisterForm: React.FC = () => {
     handleSubmit,
     errors,
     onSubmit,
-    showPassword,
-    handleShowPassword,
+    showPasswordState,
+    authPersistence,
     validatePwdLetters,
     validatePwdNumber,
     validatePwdLenght,
@@ -25,7 +25,10 @@ export const RegisterForm: React.FC = () => {
     <div css={styles.formContainer}>
       <form css={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h1>Sign up</h1>
-        <GoogleButton buttonText="Sign up with Google" />
+        <GoogleButton
+          buttonText="Sign up with Google"
+          authPersistance={authPersistence}
+        />
         <hr />
         <div css={styles.inputContainer}>
           <label css={styles.inputLabel}>Email</label>
@@ -45,7 +48,7 @@ export const RegisterForm: React.FC = () => {
           <label css={styles.inputLabel}>Password</label>
           <input
             css={errors.password ? styles.inputInvalid : styles.inputValid}
-            type={showPassword ? 'text' : 'password'}
+            type={showPasswordState ? 'text' : 'password'}
             {...register('password', {
               required: FORM_ERRORS.fieldRequired,
               validate: {
@@ -61,7 +64,7 @@ export const RegisterForm: React.FC = () => {
           <label css={styles.inputLabel}>Confirm Password</label>
           <input
             css={styles.input}
-            type={showPassword ? 'text' : 'password'}
+            type={showPasswordState ? 'text' : 'password'}
             {...register('confirmPassword', {
               required: 'This field is required.',
               validate: {
@@ -72,11 +75,11 @@ export const RegisterForm: React.FC = () => {
           <ErrorForm error={errors.confirmPassword} />
         </div>
         <div css={styles.checkboxContainer}>
-          <input type="checkbox" onChange={handleShowPassword} />
+          <input type="checkbox" {...register('showPassword')} />
           <label>Show password</label>
         </div>
         <div css={styles.checkboxContainer}>
-          <input type="checkbox" />
+          <input type="checkbox" {...register('authPersistence')} />
           <label>Remember me</label>
         </div>
         <button css={styles.formButton} type="submit">
