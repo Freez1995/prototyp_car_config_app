@@ -91,21 +91,31 @@ export const formButton = css`
 export const redirectContainer = css`
   text-align: center;
   a {
+    display: flex;
+    justify-content: center;
     color: #3f3fe4;
+  }
+  img {
+    width: 18px;
+    margin-right: 5px;
   }
 `;
 
 export const errorForm = css`
-  list-style: none;
   li {
     display: flex;
     margin: 5px 0;
-    color: #ea8888;
+    padding: 5px;
+    background-color: #fdeded;
+    color: #8f605e;
     font-size: 14px;
+    p {
+      margin-right: 8px;
+    }
   }
   img {
     width: 15px;
-    margin-right: 8px;
+    margin: 0 8px;
   }
 `;
 

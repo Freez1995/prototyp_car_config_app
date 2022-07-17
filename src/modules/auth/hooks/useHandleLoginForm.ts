@@ -1,39 +1,41 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useFirebaseAuth } from './useFirebaseAuth';
 
-export interface LoginFormValues {
+interface LoginFormValues {
   email: string;
   password: string;
+  authPersistence: boolean;
+  showPassword: boolean;
 }
-
 export function useHandleLoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<LoginFormValues>({
     defaultValues: {
       email: '',
       password: '',
+      authPersistence: false,
+      showPassword: false,
     },
     criteriaMode: 'all',
   });
-  const [showPassword, setShowPassword] = useState(false);
+  const showPasswordState = watch('showPassword');
+  const authPersistence = watch('authPersistence');
+  const { handleSignIn } = useFirebaseAuth();
 
-  function handleShowPassword() {
-    setShowPassword(!showPassword);
-  }
-
-  function onSubmit(data: LoginFormValues) {
-    alert(JSON.stringify(data));
+  function onSubmit({ email, password, authPersistence }: LoginFormValues) {
+    handleSignIn({ email, password, authPersistence });
   }
 
   return {
     register,
-    showPassword,
-    handleShowPassword,
+    showPasswordState,
     handleSubmit,
     onSubmit,
     errors,
+    authPersistence,
   };
 }
