@@ -9,7 +9,18 @@ export const FORM_ERRORS = {
 
 export const FIREBASE_ERRORS = {
   'Firebase: Error (auth/email-already-in-use).':
-    'A user with that email already exist',
-  'Firebase: Error (auth/user-not-found).': 'Invalid email or password',
-  'Firebase: Error (auth/wrong-password).': 'Invalid email or password',
+    'A user with that email already exist.',
+  'Firebase: Error (auth/user-not-found).': 'Invalid email or password.',
+  'Firebase: Error (auth/wrong-password).': 'Invalid email or password.',
+  'Firebase: Error (auth/network-request-failed).':
+    'Connection failed, please check your connection and try again.',
+  'Firebase: Error (auth/popup-closed-by-user).':
+    'Sign in with Google has been canceled.',
+};
+
+export const FIREBASE_PWD_RESET_ERRORS = {
+  'Firebase: Error (auth/user-not-found).':
+    'Email account that you tried to reach does not exist.',
+  'Firebase: Error (auth/network-request-failed).':
+    'Connection failed, please check your connection and try again.',
 };
