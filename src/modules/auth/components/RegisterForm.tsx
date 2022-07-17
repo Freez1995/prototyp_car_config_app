@@ -49,8 +49,8 @@ export const RegisterForm: React.FC = () => {
             {...register('password', {
               required: FORM_ERRORS.fieldRequired,
               validate: {
-                capitalLetterCheck: (v) => validatePwdLetters(v),
-                numberCheck: (v) => validatePwdNumber(v),
+                pwdLettersCheck: (v) => validatePwdLetters(v),
+                pwdNumberCheck: (v) => validatePwdNumber(v),
                 pwdLengthCheck: (v) => validatePwdLenght(v),
               },
             })}
