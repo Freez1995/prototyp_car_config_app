@@ -86,6 +86,9 @@ export const formButton = css`
   &:active {
     box-shadow: inset 1px 1px 8px #333;
   }
+  &:disabled {
+    pointer-events: none;
+  }
 `;
 
 export const redirectContainer = css`
@@ -117,8 +120,4 @@ export const errorForm = css`
     width: 15px;
     margin: 0 8px;
   }
-`;
-
-export const hideErrorForm = css`
-  display: none;
 `;

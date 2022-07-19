@@ -1,16 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { FieldError } from 'react-hook-form';
-import { errorForm, hideErrorForm } from '../styles';
+import * as styles from '../styles/Form.styles';
 import errorIcon from 'assets/auth/errorIcon.svg';
 
-interface ErrorFormProps {
-  error: FieldError | undefined;
+interface Props {
+  error?: FieldError;
 }
 
-export const ErrorForm: React.FC<ErrorFormProps> = ({ error }) => {
+export const FormErrors: React.FC<Props> = ({ error }) => {
+  if (!error) return null;
+
   return (
-    <ul css={error ? errorForm : hideErrorForm}>
+    <ul css={styles.errorForm}>
       {error?.types &&
         Object.values(error?.types).map((item, index) => (
           <li key={index}>

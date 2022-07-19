@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -11,46 +11,106 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth } from 'firebaseConfig';
-import { FIREBASE_ERRORS, FIREBASE_PWD_RESET_ERRORS } from '../const';
+import { FIREBASE_ERRORS, FIREBASE_PASSWORD_RESET_ERRORS } from '../const';
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
 import { authAtoms } from '../state';
 import { toast } from 'react-toastify';
+import { FirebaseError } from 'firebase/app';
 
 interface FirebaseAuthValues {
   email: string;
   password: string;
-  authPersistence: boolean;
+  isSessionPersistenceEnabled: boolean;
 }
 export function useFirebaseAuth() {
   const setUserAuthState = useSetRecoilState(authAtoms.userAuthState);
   const resetUserAuthState = useResetRecoilState(authAtoms.userAuthState);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function isFirebaseError(error: unknown): error is FirebaseError {
+    return error instanceof FirebaseError === true;
+  }
+
+  function isRenamedFirebaseAuthError(
+    error: string,
+  ): error is keyof typeof FIREBASE_ERRORS {
+    return error in FIREBASE_ERRORS === true;
+  }
+
+  function isRenamedFirebasePasswordResetError(
+    error: string,
+  ): error is keyof typeof FIREBASE_PASSWORD_RESET_ERRORS {
+    return error in FIREBASE_PASSWORD_RESET_ERRORS === true;
+  }
 
   function handleSignIn({
     email,
     password,
-    authPersistence,
+    isSessionPersistenceEnabled,
   }: FirebaseAuthValues) {
-    !authPersistence && setPersistence(auth, browserSessionPersistence);
-    signInWithEmailAndPassword(auth, email, password).catch((error: Error) => {
-      toast.error(
-        FIREBASE_ERRORS[error.message as keyof typeof FIREBASE_ERRORS],
-      );
-    });
+    setIsLoading(true);
+    !isSessionPersistenceEnabled &&
+      setPersistence(auth, browserSessionPersistence);
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => setIsLoading(false))
+      .catch((error) => {
+        setIsLoading(false);
+        if (
+          isFirebaseError(error) &&
+          isRenamedFirebaseAuthError(error.message)
+        ) {
+          toast.error(FIREBASE_ERRORS[error.message]);
+          return;
+        }
+        toast.error('Something went wrong, please try again.');
+      });
   }
 
   function handleSignUp({
     email,
     password,
-    authPersistence,
+    isSessionPersistenceEnabled,
   }: FirebaseAuthValues) {
-    !authPersistence && setPersistence(auth, browserSessionPersistence);
-    createUserWithEmailAndPassword(auth, email, password).catch(
-      (error: Error) => {
-        toast.error(
-          FIREBASE_ERRORS[error.message as keyof typeof FIREBASE_ERRORS],
-        );
-      },
-    );
+    setIsLoading(true);
+    !isSessionPersistenceEnabled &&
+      setPersistence(auth, browserSessionPersistence);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => setIsLoading(false))
+      .catch((error) => {
+        setIsLoading(false);
+        if (
+          isFirebaseError(error) &&
+          isRenamedFirebaseAuthError(error.message)
+        ) {
+          toast.error(FIREBASE_ERRORS[error.message]);
+          return;
+        }
+        toast.error('Something went wrong, please try again.');
+      });
+  }
+
+  function handleGoogleAuthentication(
+    e: React.MouseEvent<HTMLButtonElement>,
+    isSessionPersistenceEnabled: boolean,
+  ) {
+    e.preventDefault();
+    setIsLoading(true);
+    !isSessionPersistenceEnabled &&
+      setPersistence(auth, browserSessionPersistence);
+    const googleAuthProvider = new GoogleAuthProvider();
+    signInWithPopup(auth, googleAuthProvider)
+      .then(() => setIsLoading(false))
+      .catch((error) => {
+        setIsLoading(false);
+        if (
+          isFirebaseError(error) &&
+          isRenamedFirebaseAuthError(error.message)
+        ) {
+          toast.error(FIREBASE_ERRORS[error.message]);
+          return;
+        }
+        toast.error('Something went wrong, please try again.');
+      });
   }
 
   function handleSignOut() {
@@ -59,37 +119,29 @@ export function useFirebaseAuth() {
     });
   }
 
-  function handleGoogleAuthentication(
-    e: React.MouseEvent<HTMLButtonElement>,
-    authPersistence: boolean,
-  ) {
-    e.preventDefault();
-    !authPersistence && setPersistence(auth, browserSessionPersistence);
-    const googleAuthProvider = new GoogleAuthProvider();
-    signInWithPopup(auth, googleAuthProvider).catch((error: Error) => {
-      toast.error(
-        FIREBASE_ERRORS[error.message as keyof typeof FIREBASE_ERRORS],
-      );
-    });
-  }
-
   function handlePasswordReset(email: string) {
+    setIsLoading(true);
     const actionCodeSettings = {
       url: 'http://localhost:3000/login',
       handleCodeInApp: false,
     };
     sendPasswordResetEmail(auth, email, actionCodeSettings)
       .then(() => {
+        setIsLoading(false);
         toast.success(
           'Email with a link to reset password has been sent to your email address.',
         );
       })
-      .catch((error: Error) => {
-        toast.error(
-          FIREBASE_PWD_RESET_ERRORS[
-            error.message as keyof typeof FIREBASE_PWD_RESET_ERRORS
-          ],
-        );
+      .catch((error) => {
+        setIsLoading(false);
+        if (
+          isFirebaseError(error) &&
+          isRenamedFirebasePasswordResetError(error.message)
+        ) {
+          toast.error(FIREBASE_PASSWORD_RESET_ERRORS[error.message]);
+          return;
+        }
+        toast.error('Something went wrong, please try again.');
       });
   }
 
@@ -103,6 +155,7 @@ export function useFirebaseAuth() {
   }, []);
 
   return {
+    isLoading,
     handleSignIn,
     handleSignUp,
     handleSignOut,

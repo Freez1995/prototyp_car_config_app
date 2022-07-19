@@ -6,19 +6,22 @@ import { useFirebaseAuth } from '../hooks';
 
 interface GoogleButtonProps {
   buttonText: string;
-  authPersistance: boolean;
+  isSessionPersistenceEnabled: boolean;
 }
 
 export const GoogleButton: React.FC<GoogleButtonProps> = ({
   buttonText,
-  authPersistance,
+  isSessionPersistenceEnabled,
 }) => {
-  const { handleGoogleAuthentication } = useFirebaseAuth();
+  const { handleGoogleAuthentication, isLoading } = useFirebaseAuth();
 
   return (
     <button
       css={styles.googleButton}
-      onClick={(e) => handleGoogleAuthentication(e, authPersistance)}
+      onClick={(e) =>
+        handleGoogleAuthentication(e, isSessionPersistenceEnabled)
+      }
+      disabled={isLoading}
     >
       <img css={styles.googleButtonIcon} src={googleIcon} alt="Google icon" />
       <p>{buttonText}</p>

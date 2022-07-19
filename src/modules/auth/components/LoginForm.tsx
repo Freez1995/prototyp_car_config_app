@@ -2,20 +2,44 @@
 import React from 'react';
 import * as styles from '../styles/Form.styles';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { GoogleButton } from './GoogleButton';
-import { useHandleLoginForm } from '../hooks';
+import { useFirebaseAuth } from '../hooks';
 import { FORM_ERRORS } from '../const';
-import { ErrorForm } from './ErrorForm';
+import { FormErrors } from './FormErrors';
 
+interface LoginFormValues {
+  email: string;
+  password: string;
+  isSessionPersistenceEnabled: boolean;
+  showPassword: boolean;
+}
 export const LoginForm: React.FC = () => {
   const {
     register,
-    showPasswordState,
-    authPersistence,
     handleSubmit,
-    onSubmit,
-    errors,
-  } = useHandleLoginForm();
+    formState: { errors },
+    watch,
+  } = useForm<LoginFormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      isSessionPersistenceEnabled: false,
+      showPassword: false,
+    },
+    criteriaMode: 'all',
+  });
+  const showPasswordState = watch('showPassword');
+  const isSessionPersistenceEnabled = watch('isSessionPersistenceEnabled');
+  const { handleSignIn, isLoading } = useFirebaseAuth();
+
+  function onSubmit({
+    email,
+    password,
+    isSessionPersistenceEnabled,
+  }: LoginFormValues) {
+    handleSignIn({ email, password, isSessionPersistenceEnabled });
+  }
 
   return (
     <div css={styles.formContainer}>
@@ -23,13 +47,16 @@ export const LoginForm: React.FC = () => {
         <h1>Sign in</h1>
         <GoogleButton
           buttonText="Sign in with Google"
-          authPersistance={authPersistence}
+          isSessionPersistenceEnabled={isSessionPersistenceEnabled}
         />
         <hr />
         <div css={styles.inputContainer}>
-          <label css={styles.inputLabel}>Email</label>
+          <label css={styles.inputLabel} htmlFor="email">
+            Email
+          </label>
           <input
             css={errors.email ? styles.inputInvalid : styles.inputValid}
+            id="email"
             {...register('email', {
               required: FORM_ERRORS.fieldRequired,
               pattern: {
@@ -38,28 +65,41 @@ export const LoginForm: React.FC = () => {
               },
             })}
           />
-          <ErrorForm error={errors.email} />
+          <FormErrors error={errors.email} />
         </div>
         <div css={styles.inputContainer}>
-          <label css={styles.inputLabel}>Password</label>
+          <label css={styles.inputLabel} htmlFor="password">
+            Password
+          </label>
           <input
             css={errors.email ? styles.inputInvalid : styles.inputValid}
+            id="password"
             type={showPasswordState ? 'text' : 'password'}
             {...register('password', {
               required: FORM_ERRORS.fieldRequired,
             })}
           />
-          <ErrorForm error={errors.password} />
+          <FormErrors error={errors.password} />
         </div>
         <div css={styles.checkboxContainer}>
-          <input type="checkbox" {...register('showPassword')} />
-          <label>Show password</label>
+          <input
+            type="checkbox"
+            id="showPassword"
+            {...register('showPassword')}
+          />
+          <label htmlFor="showPassword">Show password</label>
         </div>
         <div css={styles.checkboxContainer}>
-          <input type="checkbox" {...register('authPersistence')} />
-          <label>Remember me</label>
+          <input
+            type="checkbox"
+            id="rememberMe"
+            {...register('isSessionPersistenceEnabled')}
+          />
+          <label htmlFor="rememberMe">Remember me</label>
         </div>
-        <button css={styles.formButton}>Sign in</button>
+        <button css={styles.formButton} type="submit" disabled={isLoading}>
+          Sign in
+        </button>
         <div css={styles.redirectContainer}>
           <Link to="/forgot-password">Forgot Password?</Link>
           <hr />

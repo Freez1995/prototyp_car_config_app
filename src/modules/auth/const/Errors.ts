@@ -1,9 +1,9 @@
 export const FORM_ERRORS = {
   fieldRequired: 'This field is required.',
   emailFormatError: 'Entered value does not match email format.',
-  pwdLetterError: 'Password must contain a capital and lowercase letter.',
-  pwdNumberError: 'Password must contain at least one number.',
-  pwdLengthError: 'Password must contain at least six characters.',
+  passwordLetterError: 'Password must contain a capital and lowercase letter.',
+  passwordNumberError: 'Password must contain at least one number.',
+  passwordLengthError: 'Password must contain at least six characters.',
   matchPasswordsError: 'Passwords must match',
 };
 
@@ -16,9 +16,11 @@ export const FIREBASE_ERRORS = {
     'Connection failed, please check your connection and try again.',
   'Firebase: Error (auth/popup-closed-by-user).':
     'Sign in with Google has been canceled.',
+  'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).':
+    'Too many attempts, please reset your password or try again later.',
 };
 
-export const FIREBASE_PWD_RESET_ERRORS = {
+export const FIREBASE_PASSWORD_RESET_ERRORS = {
   'Firebase: Error (auth/user-not-found).':
     'Email account that you tried to reach does not exist.',
   'Firebase: Error (auth/network-request-failed).':

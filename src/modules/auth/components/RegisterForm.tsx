@@ -3,23 +3,52 @@ import React from 'react';
 import * as styles from '../styles/Form.styles';
 import { Link } from 'react-router-dom';
 import { GoogleButton } from './GoogleButton';
-import { useHandleRegisterForm } from '../hooks';
-import { ErrorForm } from './ErrorForm';
+import { useFirebaseAuth } from '../hooks';
+import { FormErrors } from './FormErrors';
 import { FORM_ERRORS } from '../const';
+import { useForm } from 'react-hook-form';
+import {
+  validateMatchPasswords,
+  validatePasswordLength,
+  validatePasswordLetters,
+  validatePasswordNumber,
+} from '../utils';
 
+interface RegisterFormValues {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  isSessionPersistenceEnabled: boolean;
+  showPassword: boolean;
+}
 export const RegisterForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    errors,
-    onSubmit,
-    showPasswordState,
-    authPersistence,
-    validatePwdLetters,
-    validatePwdNumber,
-    validatePwdLenght,
-    validateMatchPasswords,
-  } = useHandleRegisterForm();
+    formState: { errors },
+    watch,
+  } = useForm<RegisterFormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      isSessionPersistenceEnabled: false,
+      showPassword: false,
+    },
+    criteriaMode: 'all',
+  });
+  const passwordValue = watch('password');
+  const showPasswordState = watch('showPassword');
+  const isSessionPersistenceEnabled = watch('isSessionPersistenceEnabled');
+  const { handleSignUp, isLoading } = useFirebaseAuth();
+
+  function onSubmit({
+    email,
+    password,
+    isSessionPersistenceEnabled,
+  }: RegisterFormValues) {
+    handleSignUp({ email, password, isSessionPersistenceEnabled });
+  }
 
   return (
     <div css={styles.formContainer}>
@@ -27,13 +56,16 @@ export const RegisterForm: React.FC = () => {
         <h1>Sign up</h1>
         <GoogleButton
           buttonText="Sign up with Google"
-          authPersistance={authPersistence}
+          isSessionPersistenceEnabled={isSessionPersistenceEnabled}
         />
         <hr />
         <div css={styles.inputContainer}>
-          <label css={styles.inputLabel}>Email</label>
+          <label css={styles.inputLabel} htmlFor="email">
+            Email
+          </label>
           <input
             css={errors.email ? styles.inputInvalid : styles.inputValid}
+            id="email"
             {...register('email', {
               required: FORM_ERRORS.fieldRequired,
               pattern: {
@@ -42,47 +74,65 @@ export const RegisterForm: React.FC = () => {
               },
             })}
           />
-          <ErrorForm error={errors.email} />
+          <FormErrors error={errors.email} />
         </div>
         <div css={styles.inputContainer}>
-          <label css={styles.inputLabel}>Password</label>
+          <label css={styles.inputLabel} htmlFor="password">
+            Password
+          </label>
           <input
             css={errors.password ? styles.inputInvalid : styles.inputValid}
+            id="password"
             type={showPasswordState ? 'text' : 'password'}
             {...register('password', {
               required: FORM_ERRORS.fieldRequired,
               validate: {
-                pwdLettersCheck: (v) => validatePwdLetters(v),
-                pwdNumberCheck: (v) => validatePwdNumber(v),
-                pwdLengthCheck: (v) => validatePwdLenght(v),
+                passwordLettersCheck: (password) =>
+                  validatePasswordLetters(password),
+                passwordNumberCheck: (password) =>
+                  validatePasswordNumber(password),
+                passwordLengthCheck: (password) =>
+                  validatePasswordLength(password),
               },
             })}
           />
-          <ErrorForm error={errors.password} />
+          <FormErrors error={errors.password} />
         </div>
         <div css={styles.inputContainer}>
-          <label css={styles.inputLabel}>Confirm Password</label>
+          <label css={styles.inputLabel} htmlFor="confirmPassword">
+            Confirm Password
+          </label>
           <input
-            css={styles.input}
+            css={errors.password ? styles.inputInvalid : styles.inputValid}
+            id="confirmPassword"
             type={showPasswordState ? 'text' : 'password'}
             {...register('confirmPassword', {
               required: 'This field is required.',
               validate: {
-                matchPasswords: (v) => validateMatchPasswords(v),
+                matchPasswords: (confirmPassword) =>
+                  validateMatchPasswords(confirmPassword, passwordValue),
               },
             })}
           />
-          <ErrorForm error={errors.confirmPassword} />
+          <FormErrors error={errors.confirmPassword} />
         </div>
         <div css={styles.checkboxContainer}>
-          <input type="checkbox" {...register('showPassword')} />
-          <label>Show password</label>
+          <input
+            type="checkbox"
+            id="showPassword"
+            {...register('showPassword')}
+          />
+          <label htmlFor="showPassword">Show password</label>
         </div>
         <div css={styles.checkboxContainer}>
-          <input type="checkbox" {...register('authPersistence')} />
-          <label>Remember me</label>
+          <input
+            type="checkbox"
+            id="rememberMe"
+            {...register('isSessionPersistenceEnabled')}
+          />
+          <label htmlFor="rememberMe">Remember me</label>
         </div>
-        <button css={styles.formButton} type="submit">
+        <button css={styles.formButton} type="submit" disabled={isLoading}>
           Sign up
         </button>
         <div css={styles.redirectContainer}>

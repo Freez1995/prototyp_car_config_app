@@ -2,13 +2,32 @@
 import React from 'react';
 import * as styles from '../styles/Form.styles';
 import { Link } from 'react-router-dom';
-import { useHandleForgotPwdForm } from '../hooks';
-import { ErrorForm } from './ErrorForm';
+import { useForm } from 'react-hook-form';
+import { useFirebaseAuth } from '../hooks';
+import { FormErrors } from './FormErrors';
 import { FORM_ERRORS } from '../const';
-import backArrowIcon from 'assets/backArrowIcon.svg';
+import backArrowIcon from 'assets/auth/backArrowIcon.svg';
 
-export const ForgotPassword: React.FC = () => {
-  const { register, handleSubmit, onSubmit, errors } = useHandleForgotPwdForm();
+interface ForgotPasswordFormValues {
+  email: string;
+}
+
+export const ForgotPasswordForm: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgotPasswordFormValues>({
+    defaultValues: {
+      email: '',
+    },
+    criteriaMode: 'all',
+  });
+  const { handlePasswordReset, isLoading } = useFirebaseAuth();
+
+  function onSubmit({ email }: ForgotPasswordFormValues) {
+    handlePasswordReset(email);
+  }
 
   return (
     <div css={styles.formContainer}>
@@ -21,9 +40,12 @@ export const ForgotPassword: React.FC = () => {
             with instructions to reset your password.
           </p>
           <hr />
-          <label css={styles.inputLabel}>Email</label>
+          <label css={styles.inputLabel} htmlFor="email">
+            Email
+          </label>
           <input
             css={errors.email ? styles.inputInvalid : styles.inputValid}
+            id="email"
             {...register('email', {
               required: FORM_ERRORS.fieldRequired,
               pattern: {
@@ -32,9 +54,11 @@ export const ForgotPassword: React.FC = () => {
               },
             })}
           />
-          <ErrorForm error={errors.email} />
+          <FormErrors error={errors.email} />
         </div>
-        <button css={styles.formButton}>Send Instructions</button>
+        <button css={styles.formButton} type="submit" disabled={isLoading}>
+          Send Instructions
+        </button>
         <div css={styles.redirectContainer}>
           <Link to="/login">
             <img src={backArrowIcon} />

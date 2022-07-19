@@ -1,8 +1,7 @@
-import { ForgotPassword } from 'modules';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Auth, Layout } from 'shared';
-import { Home, Login, Register } from 'views';
+import { ForgotPassword, Home, Login, Register } from 'views';
 
 export const App: React.FC = () => {
   return (
