@@ -37,7 +37,6 @@ export function useFirebaseAuth() {
     isSessionPersistenceEnabled,
   }: FirebaseAuthValues) {
     setIsLoading(true);
-    console.log(isSessionPersistenceEnabled);
     !isSessionPersistenceEnabled &&
       setPersistence(auth, browserSessionPersistence);
     signInWithEmailAndPassword(auth, email, password)
