@@ -14,7 +14,7 @@ export const FormErrors: React.FC<Props> = ({ error }) => {
   return (
     <ul css={styles.errorForm}>
       {error?.types &&
-        Object.values(error?.types).map((item, index) => (
+        Object.values(error.types).map((item, index) => (
           <li key={index}>
             <img src={errorIcon} />
             <p> {item}</p>

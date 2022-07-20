@@ -15,7 +15,11 @@ import { FIREBASE_ERRORS, FIREBASE_PASSWORD_RESET_ERRORS } from '../const';
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
 import { authAtoms } from '../state';
 import { toast } from 'react-toastify';
-import { FirebaseError } from 'firebase/app';
+import {
+  isFirebaseError,
+  isRenamedFirebaseAuthError,
+  isRenamedFirebasePasswordResetError,
+} from '../typeguards';
 
 interface FirebaseAuthValues {
   email: string;
@@ -27,28 +31,13 @@ export function useFirebaseAuth() {
   const resetUserAuthState = useResetRecoilState(authAtoms.userAuthState);
   const [isLoading, setIsLoading] = useState(false);
 
-  function isFirebaseError(error: unknown): error is FirebaseError {
-    return error instanceof FirebaseError === true;
-  }
-
-  function isRenamedFirebaseAuthError(
-    error: string,
-  ): error is keyof typeof FIREBASE_ERRORS {
-    return error in FIREBASE_ERRORS === true;
-  }
-
-  function isRenamedFirebasePasswordResetError(
-    error: string,
-  ): error is keyof typeof FIREBASE_PASSWORD_RESET_ERRORS {
-    return error in FIREBASE_PASSWORD_RESET_ERRORS === true;
-  }
-
   function handleSignIn({
     email,
     password,
     isSessionPersistenceEnabled,
   }: FirebaseAuthValues) {
     setIsLoading(true);
+    console.log(isSessionPersistenceEnabled);
     !isSessionPersistenceEnabled &&
       setPersistence(auth, browserSessionPersistence);
     signInWithEmailAndPassword(auth, email, password)
@@ -89,11 +78,7 @@ export function useFirebaseAuth() {
       });
   }
 
-  function handleGoogleAuthentication(
-    e: React.MouseEvent<HTMLButtonElement>,
-    isSessionPersistenceEnabled: boolean,
-  ) {
-    e.preventDefault();
+  function handleGoogleAuthentication(isSessionPersistenceEnabled: boolean) {
     setIsLoading(true);
     !isSessionPersistenceEnabled &&
       setPersistence(auth, browserSessionPersistence);

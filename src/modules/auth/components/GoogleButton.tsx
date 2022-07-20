@@ -15,12 +15,15 @@ export const GoogleButton: React.FC<GoogleButtonProps> = ({
 }) => {
   const { handleGoogleAuthentication, isLoading } = useFirebaseAuth();
 
+  function handleOnSubmit() {
+    handleGoogleAuthentication(isSessionPersistenceEnabled);
+  }
+
   return (
     <button
       css={styles.googleButton}
-      onClick={(e) =>
-        handleGoogleAuthentication(e, isSessionPersistenceEnabled)
-      }
+      type="button"
+      onClick={handleOnSubmit}
       disabled={isLoading}
     >
       <img css={styles.googleButtonIcon} src={googleIcon} alt="Google icon" />
