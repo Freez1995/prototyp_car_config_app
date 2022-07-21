@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { colors } from 'shared';
 
 export const formContainer = css`
   min-height: 100vh;
@@ -11,6 +12,7 @@ export const form = css`
   width: 350px;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
     rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  background-color: ${colors.white};
   padding: 40px;
   border-radius: 5px;
   hr {
