@@ -13,7 +13,7 @@ export const FormErrors: React.FC<Props> = ({ error }) => {
 
   return (
     <ul css={styles.errorForm}>
-      {error?.types &&
+      {error.types &&
         Object.values(error.types).map((item, index) => (
           <li key={index}>
             <img src={errorIcon} />

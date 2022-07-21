@@ -31,26 +31,31 @@ export function useFirebaseAuth() {
   const resetUserAuthState = useResetRecoilState(authAtoms.userAuthState);
   const [isLoading, setIsLoading] = useState(false);
 
+  function handleSetPersistence(isSessionPersistenceEnabled: boolean) {
+    !isSessionPersistenceEnabled &&
+      setPersistence(auth, browserSessionPersistence);
+  }
+
+  function handleError(error: unknown) {
+    if (isFirebaseError(error) && isRenamedFirebaseAuthError(error.message)) {
+      toast.error(FIREBASE_ERRORS[error.message]);
+      return;
+    }
+    toast.error('Something went wrong, please try again.');
+  }
+
   function handleSignIn({
     email,
     password,
     isSessionPersistenceEnabled,
   }: FirebaseAuthValues) {
     setIsLoading(true);
-    !isSessionPersistenceEnabled &&
-      setPersistence(auth, browserSessionPersistence);
+    handleSetPersistence(isSessionPersistenceEnabled);
     signInWithEmailAndPassword(auth, email, password)
       .then(() => setIsLoading(false))
       .catch((error) => {
         setIsLoading(false);
-        if (
-          isFirebaseError(error) &&
-          isRenamedFirebaseAuthError(error.message)
-        ) {
-          toast.error(FIREBASE_ERRORS[error.message]);
-          return;
-        }
-        toast.error('Something went wrong, please try again.');
+        handleError(error);
       });
   }
 
@@ -60,40 +65,24 @@ export function useFirebaseAuth() {
     isSessionPersistenceEnabled,
   }: FirebaseAuthValues) {
     setIsLoading(true);
-    !isSessionPersistenceEnabled &&
-      setPersistence(auth, browserSessionPersistence);
+    handleSetPersistence(isSessionPersistenceEnabled);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => setIsLoading(false))
       .catch((error) => {
         setIsLoading(false);
-        if (
-          isFirebaseError(error) &&
-          isRenamedFirebaseAuthError(error.message)
-        ) {
-          toast.error(FIREBASE_ERRORS[error.message]);
-          return;
-        }
-        toast.error('Something went wrong, please try again.');
+        handleError(error);
       });
   }
 
   function handleGoogleAuthentication(isSessionPersistenceEnabled: boolean) {
     setIsLoading(true);
-    !isSessionPersistenceEnabled &&
-      setPersistence(auth, browserSessionPersistence);
+    handleSetPersistence(isSessionPersistenceEnabled);
     const googleAuthProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleAuthProvider)
       .then(() => setIsLoading(false))
       .catch((error) => {
         setIsLoading(false);
-        if (
-          isFirebaseError(error) &&
-          isRenamedFirebaseAuthError(error.message)
-        ) {
-          toast.error(FIREBASE_ERRORS[error.message]);
-          return;
-        }
-        toast.error('Something went wrong, please try again.');
+        handleError(error);
       });
   }
 
