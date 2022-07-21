@@ -2,7 +2,7 @@ import React from 'react';
 import { authAtoms } from 'modules/auth';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { Header } from '../header';
+import { Header } from './Header';
 
 export const Layout: React.FC = () => {
   const user = useRecoilValue(authAtoms.userAuthState);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import * as styles from 'shared/styles';
 import logo from 'assets/header/logo.svg';
 import { Link } from 'react-router-dom';
-import { DropdownMenu } from '../dropdown-menu';
+import { DropdownMenu } from './DropdownMenu';
 import { useFirebaseAuth } from 'modules/auth';
 
 export const Header: React.FC = () => {

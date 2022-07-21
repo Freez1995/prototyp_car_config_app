@@ -13,7 +13,7 @@ export const googleButton = css`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 10px;
   &:active {
-    box-shadow: inset 1px 1px 8px #333;
+    box-shadow: inset 1px 1px 8px hsl(0, 0%, 20%);
   }
   &:disabled {
     pointer-events: none;

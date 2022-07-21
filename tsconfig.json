@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
+    "rootDir": "src",
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,12 +23,7 @@
     "typeRoots": ["node_modules/@types", "src/shared/types"],
     "tsBuildInfoFile": ".tsbuildinfo",
     "incremental": true,
-    "paths": {
-      "assets/*": ["./src/assets/*"],
-      "modules/*": ["./src/modules/*"],
-      "shared/*": ["./src/shared/*"],
-      "views/*": ["./src/views/*"]
-    }
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "public", ".cache"]

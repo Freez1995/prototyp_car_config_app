@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { boxShadow, colors } from 'shared/styles/variables';
+import { colors } from 'shared/styles';
 
 export const formContainer = css`
   min-height: 100vh;
@@ -10,7 +10,8 @@ export const formContainer = css`
 
 export const form = css`
   width: 350px;
-  box-shadow: ${boxShadow.shadowPrimary};
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   background-color: ${colors.white};
   padding: 40px;
   border-radius: 5px;
@@ -39,7 +40,7 @@ export const inputLabel = css`
 
 export const input = css`
   padding: 8px;
-  border: 2px solid ${colors.borderPrimaryLighter};
+  border: 2px solid ${colors.borderPrimaryLight};
   border-radius: 5px;
   outline: none;
 `;
@@ -57,10 +58,10 @@ export const inputValid = css`
 
 export const inputInvalid = css`
   ${input}
-  border: 2px solid #ea8888;
+  border-color: ${colors.utilityErrorLight};
   &:focus {
-    border-color: #ea8888;
-    box-shadow: 0 0 2px #ea8888;
+    border-color: ${colors.utilityErrorLight};
+    box-shadow: 0 0 2px ${colors.utilityErrorLight};
   }
 `;
 
@@ -80,12 +81,12 @@ export const formButton = css`
   padding: 10px 0;
   font-size: 18px;
   color: white;
-  background-color: #3f3fe4;
-  border: 1px solid #3f3fe4;
+  background-color: ${colors.globalPrimary};
+  border: 1px solid ${colors.globalPrimary};
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   &:active {
-    box-shadow: inset 1px 1px 8px #333;
+    box-shadow: inset 1px 1px 8px hsl(0, 0%, 20%);
   }
   &:disabled {
     pointer-events: none;
@@ -97,7 +98,7 @@ export const redirectContainer = css`
   a {
     display: flex;
     justify-content: center;
-    color: #3f3fe4;
+    color: ${colors.globalPrimary};
   }
   img {
     width: 18px;
@@ -110,8 +111,8 @@ export const errorForm = css`
     display: flex;
     margin: 5px 0;
     padding: 5px;
-    background-color: #fdeded;
-    color: #8f605e;
+    background-color: hsl(0, 80%, 96%);
+    color: hsl(2, 21%, 46%);
     font-size: 14px;
     p {
       margin-right: 8px;
