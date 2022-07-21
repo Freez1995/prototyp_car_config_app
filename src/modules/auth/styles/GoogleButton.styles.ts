@@ -15,6 +15,9 @@ export const googleButton = css`
   &:active {
     box-shadow: inset 1px 1px 8px #333;
   }
+  &:disabled {
+    pointer-events: none;
+  }
 `;
 
 export const googleButtonIcon = css`
