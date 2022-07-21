@@ -46,6 +46,10 @@ export const colors = {
   white: 'hsl(0, 0%, 100%)',
 };
 
+export const boxShadow = {
+  shadowPrimary: '0px 10px 40px hsla(0, 0%, 0%, 0.06)',
+};
+
 export const fontFamily = {
   inter: 'Inter',
   opticianSans: 'Optician Sans',

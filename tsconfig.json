@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "rootDir": "src",
+    "baseUrl": ".",
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,7 +21,13 @@
     "jsxImportSource": "@emotion/react",
     "typeRoots": ["node_modules/@types", "src/shared/types"],
     "tsBuildInfoFile": ".tsbuildinfo",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "assets/*": ["./src/assets/*"],
+      "modules/*": ["./src/modules/*"],
+      "shared/*": ["./src/shared/*"],
+      "views/*": ["./src/views/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "public", ".cache"]

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Auth, Layout } from 'shared';
-import { ForgotPassword, Home, Login, Register } from 'views';
+import { Auth, Layout } from './shared';
+import { ForgotPassword, Home, Login, Register } from './views';
 
 export const App: React.FC = () => {
   return (

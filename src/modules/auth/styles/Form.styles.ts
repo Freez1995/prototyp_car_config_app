@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from 'shared';
+import { boxShadow, colors } from 'shared/styles/variables';
 
 export const formContainer = css`
   min-height: 100vh;
@@ -10,14 +10,13 @@ export const formContainer = css`
 
 export const form = css`
   width: 350px;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  box-shadow: ${boxShadow.shadowPrimary};
   background-color: ${colors.white};
   padding: 40px;
   border-radius: 5px;
   hr {
     height: 2px;
-    background-color: #ebebeb;
+    background-color: ${colors.backgroundPrimaryLighter};
     border: none;
     margin: 10px 0;
   }
@@ -40,7 +39,7 @@ export const inputLabel = css`
 
 export const input = css`
   padding: 8px;
-  border: 2px solid #ebebeb;
+  border: 2px solid ${colors.borderPrimaryLighter};
   border-radius: 5px;
   outline: none;
 `;
@@ -48,11 +47,11 @@ export const input = css`
 export const inputValid = css`
   ${input}
   &:hover {
-    border-color: #3f3fe4;
+    border-color: ${colors.globalPrimary};
   }
   &:focus {
-    border-color: #3f3fe4;
-    box-shadow: 0 0 2px #3f3fe4;
+    border-color: ${colors.globalPrimary};
+    box-shadow: 0 0 2px ${colors.globalPrimary};
   }
 `;
 

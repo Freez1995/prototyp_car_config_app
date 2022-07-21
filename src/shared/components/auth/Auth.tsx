@@ -1,5 +1,5 @@
-import { authAtoms } from 'modules';
 import React from 'react';
+import { authAtoms } from 'modules/auth';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 

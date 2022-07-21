@@ -4,7 +4,7 @@ import * as styles from 'shared/styles';
 import logo from 'assets/header/logo.svg';
 import { Link } from 'react-router-dom';
 import { DropdownMenu } from '../dropdown-menu';
-import { useFirebaseAuth } from 'modules';
+import { useFirebaseAuth } from 'modules/auth';
 
 export const Header: React.FC = () => {
   const [isToggled, setIsToggled] = useState(false);

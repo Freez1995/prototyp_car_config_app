@@ -10,7 +10,7 @@ import {
   browserSessionPersistence,
   sendPasswordResetEmail,
 } from 'firebase/auth';
-import { auth } from 'firebaseConfig';
+import { auth } from 'src/firebaseConfig';
 import { FIREBASE_ERRORS, FIREBASE_PASSWORD_RESET_ERRORS } from '../const';
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
 import { authAtoms } from '../state';
