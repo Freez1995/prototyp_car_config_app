@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from 'shared/styles';
+import { boxShadow, colors } from 'shared/styles';
 
 export const formContainer = css`
   min-height: 100vh;
@@ -86,7 +86,7 @@ export const formButton = css`
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   &:active {
-    box-shadow: inset 1px 1px 8px hsl(0, 0%, 20%);
+    box-shadow: ${boxShadow.shadowItemClicked};
   }
   &:disabled {
     pointer-events: none;

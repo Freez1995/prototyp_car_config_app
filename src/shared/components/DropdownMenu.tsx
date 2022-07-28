@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles } from '@emotion/react';
 import React from 'react';
-import * as styles from 'shared/styles';
+import * as styles from '../styles/DropdownMenu.styles';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   type: 'mainMenuDropdown' | 'carConfigDropdown';

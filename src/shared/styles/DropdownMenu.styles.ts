@@ -1,15 +1,16 @@
 import { css } from '@emotion/react';
 import { small } from './fonts';
-import { colors } from './variables';
+import { boxShadow, colors } from './variables';
 
 export const dropdownContainer = css`
   ${small}
   position: absolute;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   width: max-content;
   background-color: ${colors.white};
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.06);
+  box-shadow: ${boxShadow.shadowPrimary};
 `;
 
 export const mainMenuDropdown = css`

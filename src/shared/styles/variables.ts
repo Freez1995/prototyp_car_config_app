@@ -48,6 +48,7 @@ export const colors = {
 
 export const boxShadow = {
   shadowPrimary: '0px 10px 40px hsla(0, 0%, 0%, 0.06)',
+  shadowItemClicked: 'inset 1px 1px 8px hsl(0, 0%, 20%)',
 };
 
 export const fontFamily = {

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { small, tiny } from './fonts';
-import { colors, fontFamily, fontWeight } from './variables';
+import { boxShadow, colors, fontFamily, fontWeight } from './variables';
 
 export const header = css`
   position: relative;
@@ -25,6 +25,12 @@ export const configureCarLink = css`
   border: 1px solid ${colors.borderPrimaryDarker};
   color: ${colors.textPrimaryLighter};
   padding: 8px 16px;
+  &:hover {
+    background-color: ${colors.backgroundPrimaryDarker};
+  }
+  &:active {
+    box-shadow: ${boxShadow.shadowItemClicked};
+  }
 `;
 
 export const hamburgerButton = css`
@@ -90,6 +96,10 @@ export const dropdownItemLink = css`
   color: ${colors.globalPrimary};
   padding: 16px 25px;
   border-bottom: 1px solid ${colors.borderPrimaryLighter};
+  &:hover {
+    background-color: ${colors.globalPrimaryLight};
+    color: ${colors.white};
+  }
 `;
 
 export const dropdownItemButton = css`
@@ -101,4 +111,8 @@ export const dropdownItemButton = css`
   padding: 16px 25px;
   border: none;
   text-align: start;
+  &:hover {
+    background-color: ${colors.globalPrimaryLight};
+    color: ${colors.white};
+  }
 `;
