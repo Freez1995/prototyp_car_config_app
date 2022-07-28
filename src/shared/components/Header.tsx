@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
-import * as styles from 'shared/styles';
+import * as styles from '../styles/Header.styles';
 import logo from 'assets/header/logo.svg';
 import { Link } from 'react-router-dom';
 import { DropdownMenu } from './DropdownMenu';
@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
     <header css={styles.header}>
       <img src={logo} />
       <nav css={styles.navbar}>
-        <Link css={styles.configureCarLink} to="">
+        <Link css={styles.configureCarLink} to="/select-car">
           Configure a car
         </Link>
         <button css={styles.hamburgerButton} onClick={handleToggleDropdown}>
@@ -31,7 +31,11 @@ export const Header: React.FC = () => {
           />
         </button>
         <DropdownMenu isToggled={isToggled} type={'mainMenuDropdown'}>
-          <Link css={styles.dropdownItemLink} to="/">
+          <Link
+            css={styles.dropdownItemLink}
+            to="/"
+            onClick={handleToggleDropdown}
+          >
             My saved configurations
           </Link>
           <button css={styles.dropdownItemButton} onClick={handleSignOut}>
