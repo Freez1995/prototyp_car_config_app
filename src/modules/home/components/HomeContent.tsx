@@ -1,24 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as styles from '../styles/HomeContent.styles';
 import { Link } from 'react-router-dom';
 import emptyStateCar from 'assets/home/emptyStateCar.png';
-import { collection, getDocs, query } from 'firebase/firestore';
-import { db } from 'firebaseConfig';
+import { useFirestoreSavedCars } from 'modules/firebase';
 
 export const HomeContent: React.FC = () => {
-  const [configurationExist, setConfigurationExist] = useState(false);
-  const savedConfigsCollection = collection(db, 'savedConfigurations');
-
-  const getSavedConfigs = async () => {
-    const savedConfigsQuery = query(savedConfigsCollection);
-    const querySnapshot = await getDocs(savedConfigsQuery);
-    querySnapshot.size === 0 && setConfigurationExist(false);
-  };
+  const { configurationExist, getSavedCars } = useFirestoreSavedCars();
 
   useEffect(() => {
     return () => {
-      getSavedConfigs();
+      getSavedCars();
     };
   }, []);
 

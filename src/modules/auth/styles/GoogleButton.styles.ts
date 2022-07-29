@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { boxShadow } from 'shared/styles';
+import { boxShadow } from 'shared/styles/variables';
 
 export const googleButton = css`
   display: flex;

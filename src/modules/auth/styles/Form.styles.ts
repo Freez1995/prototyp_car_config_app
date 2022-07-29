@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { boxShadow, colors } from 'shared/styles';
+import { boxShadow, colors } from 'shared/styles/variables';
 
 export const formContainer = css`
   min-height: 100vh;
@@ -10,8 +10,7 @@ export const formContainer = css`
 
 export const form = css`
   width: 350px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: ${boxShadow.shadowSecondary};
   background-color: ${colors.white};
   padding: 40px;
   border-radius: 5px;
@@ -111,8 +110,8 @@ export const errorForm = css`
     display: flex;
     margin: 5px 0;
     padding: 5px;
-    background-color: hsl(0, 80%, 96%);
-    color: hsl(2, 21%, 46%);
+    background-color: ${colors.backgroundFormError};
+    color: ${colors.textFormError};
     font-size: 14px;
     p {
       margin-right: 8px;

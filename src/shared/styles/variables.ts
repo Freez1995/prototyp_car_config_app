@@ -13,6 +13,7 @@ export const colors = {
   textPrimaryDark: 'hsl(240, 10%, 50%)',
   textPrimaryDarker: 'hsl(240, 10%, 35%)',
   textPrimaryDarkest: 'hsl(240, 10%, 20%)',
+  textFormError: 'hsl(2, 21%, 46%)',
 
   borderPrimary: 'hsl(240, 10%, 65%)',
   borderPrimaryLight: '	hsl(240, 10%, 80%)',
@@ -29,6 +30,7 @@ export const colors = {
   backgroundPrimaryDark: 'hsl(240, 10%, 50%)',
   backgroundPrimaryDarker: 'hsl(240, 10%, 35%)',
   backgroundPrimaryDarkest: 'hsl(240, 10%, 20%)',
+  backgroundFormError: 'hsl(0, 80%, 96%)',
 
   utilitySuccessPrimary: 'hsl(155, 75%, 47%)',
   utilitySuccessLight: 'hsl(155, 75%, 67%)',
@@ -48,6 +50,8 @@ export const colors = {
 
 export const boxShadow = {
   shadowPrimary: '0px 10px 40px hsla(0, 0%, 0%, 0.06)',
+  shadowSecondary:
+    'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',
   shadowItemClicked: 'inset 1px 1px 8px hsl(0, 0%, 20%)',
 };
 

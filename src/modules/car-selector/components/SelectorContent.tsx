@@ -1,29 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as styles from '../styles/SelectorContent.styles';
-import { collection, getDocs, query } from 'firebase/firestore';
-import { db } from 'firebaseConfig';
 import { Carousel } from 'shared/components';
 import { CarouselCard } from './CarouselCard';
-import { Car } from '../models';
-import { isCarType } from '../typeguards';
+import { useFirestoreCars } from 'modules/firebase';
 
 export const SelectorContent: React.FC = () => {
-  const [cars, setCars] = useState<Car[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const carsCollection = collection(db, 'cars');
-
-  const getAllCars = async () => {
-    const carsQuery = query(carsCollection);
-    const querySnapshot = await getDocs(carsQuery);
-    querySnapshot.forEach((snapshot) => {
-      const carId = snapshot.id;
-      const data = snapshot.data();
-      isCarType(data) &&
-        setCars((cars) => [...cars, { ...data, carId: carId }]);
-    });
-    setIsLoaded(true);
-  };
+  const { cars, isLoaded, getAllCars } = useFirestoreCars();
 
   useEffect(() => {
     return () => {

@@ -9,9 +9,12 @@ interface Props {
   carModel: string;
 }
 
-export const CarouselCard: React.FC<Props> = (props) => {
-  const { carId, carFrontImg, carYear, carModel } = props;
-
+export const CarouselCard: React.FC<Props> = ({
+  carId,
+  carFrontImg,
+  carYear,
+  carModel,
+}) => {
   function handleOnClick() {
     console.log(carId);
   }
@@ -21,7 +24,7 @@ export const CarouselCard: React.FC<Props> = (props) => {
       <img src={carFrontImg} />
       <div css={styles.contentContainer}>
         <p css={styles.carYearText}>{carYear}</p>
-        <h1 css={styles.carNameText}>{carModel}</h1>
+        <h1 css={styles.carModelText}>{carModel}</h1>
         <button css={styles.cardButton} onClick={handleOnClick}>
           Configure Now
         </button>

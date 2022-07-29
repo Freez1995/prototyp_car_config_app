@@ -1,13 +1,11 @@
 import { css } from '@emotion/react';
+import { large, medium, small } from 'shared/styles/fonts';
 import {
   boxShadow,
   colors,
   fontFamily,
   fontWeight,
-  large,
-  medium,
-  small,
-} from 'shared/styles';
+} from 'shared/styles/variables';
 
 export const contentWrapper = css`
   padding: 0 156px;

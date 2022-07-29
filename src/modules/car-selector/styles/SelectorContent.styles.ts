@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
-import { colors, fontFamily, fontWeight, large, small } from 'shared/styles';
+import { large, small } from 'shared/styles/fonts';
+import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const contentWrapper = css`
   padding-left: 156px;

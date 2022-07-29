@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from 'shared/styles';
+import { colors } from 'shared/styles/variables';
 
 export const global = css`
   @import url(https://fonts.googleapis.com/css?family=Inter:regular,bold,italic&subset=latin,latin-ext);

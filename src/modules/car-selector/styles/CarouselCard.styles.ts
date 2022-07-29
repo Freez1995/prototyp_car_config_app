@@ -1,21 +1,20 @@
 import { css } from '@emotion/react';
-import { colors, fontFamily, fontWeight, small } from 'shared/styles';
+import { carModelFont, carYearFont, small } from 'shared/styles/fonts';
+import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const card = css`
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   overflow: hidden;
   margin-right: 32px;
   min-width: 548px;
   min-height: 600px;
   background-color: ${colors.backgroundPrimaryLightest};
   img {
-    position: absolute;
-    top: 0;
-    right: -115px;
-    height: 364px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 81%;
   }
 `;
 
@@ -24,18 +23,14 @@ export const contentContainer = css`
 `;
 
 export const carYearText = css`
+  ${carYearFont}
   font-family: ${fontFamily.opticianSans};
-  font-size: 28px;
-  line-height: 32px;
   color: ${colors.textPrimaryDark};
-  letter-spacing: -2px;
 `;
 
-export const carNameText = css`
+export const carModelText = css`
+  ${carModelFont}
   font-family: ${fontFamily.opticianSans};
-  font-size: 48px;
-  line-height: 44px;
-  letter-spacing: -2px;
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDarkest};
 `;
