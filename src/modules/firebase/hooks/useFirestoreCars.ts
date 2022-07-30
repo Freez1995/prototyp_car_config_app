@@ -11,15 +11,18 @@ export function useFirestoreCars() {
   const carsCollection = collection(db, 'cars');
 
   function getAllCars() {
+    const carList: Car[] = [];
     const carsQuery = query(carsCollection);
     getDocs(carsQuery)
       .then((querySnapshot) => {
         querySnapshot.forEach((snapshot) => {
           const carId = snapshot.id;
           const data = snapshot.data();
-          isCarType(data) &&
-            setCars((cars) => [...cars, { ...data, carId: carId }]);
+          if (isCarType(data)) {
+            carList.push({ ...data, carId: carId });
+          }
         });
+        setCars(carList);
       })
       .catch((error) => {
         if (isFirestoreError(error)) {

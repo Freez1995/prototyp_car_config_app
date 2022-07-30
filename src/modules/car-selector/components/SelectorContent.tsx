@@ -9,9 +9,7 @@ export const SelectorContent: React.FC = () => {
   const { cars, isLoaded, getAllCars } = useFirestoreCars();
 
   useEffect(() => {
-    return () => {
-      getAllCars();
-    };
+    getAllCars();
   }, []);
 
   return (

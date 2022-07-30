@@ -9,9 +9,7 @@ export const HomeContent: React.FC = () => {
   const { configurationExist, getSavedCars } = useFirestoreSavedCars();
 
   useEffect(() => {
-    return () => {
-      getSavedCars();
-    };
+    getSavedCars();
   }, []);
 
   return configurationExist ? (

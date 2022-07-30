@@ -2,20 +2,13 @@
 import React from 'react';
 import * as styles from '../styles/Carousel.styles';
 import useEmblaCarousel from 'embla-carousel-react';
-import { SerializedStyles } from '@emotion/react';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   type: 'dragFreeCarousel' | 'loopCarousel';
-  extraStyles?: SerializedStyles;
   children: React.ReactNode;
 }
 
-export const Carousel: React.FC<Props> = ({
-  type,
-  extraStyles,
-  children,
-  ...rest
-}) => {
+export const Carousel: React.FC<Props> = ({ type, children, ...rest }) => {
   const [emblaRef] = useEmblaCarousel({
     containScroll: 'trimSnaps',
     dragFree: type === 'dragFreeCarousel' ? true : false,
@@ -23,7 +16,7 @@ export const Carousel: React.FC<Props> = ({
 
   return (
     <div css={styles.carousel} ref={emblaRef}>
-      <div css={[styles[type], extraStyles]} {...rest}>
+      <div css={styles[type]} {...rest}>
         {children}
       </div>
     </div>
