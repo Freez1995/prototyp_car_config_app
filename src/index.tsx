@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Global } from '@emotion/react';
-import { global } from 'App.styles';
+import { global } from './App.styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

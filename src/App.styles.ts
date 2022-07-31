@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { colors } from 'shared/styles/variables';
 
 export const global = css`
   @import url(https://fonts.googleapis.com/css?family=Inter:regular,bold,italic&subset=latin,latin-ext);
@@ -10,10 +11,16 @@ export const global = css`
     padding: 0;
   }
 
+  html {
+    min-height: 100vh;
+  }
+
   body {
     font-family: 'Inter', 'Optician Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    background-color: ${colors.backgroundPrimaryLighter};
   }
 
   code {
