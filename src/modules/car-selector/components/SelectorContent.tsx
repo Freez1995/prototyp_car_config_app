@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import * as styles from '../styles/SelectorContent.styles';
 import { Carousel } from 'shared/components';
 import { CarouselCard } from './CarouselCard';
-import { useFirestoreCars } from 'modules/firebase';
+import { useCars } from 'modules/firebase';
 
 export const SelectorContent: React.FC = () => {
-  const { cars, isLoaded, getAllCars } = useFirestoreCars();
+  const { cars, isLoaded, getAllCars } = useCars();
 
   useEffect(() => {
     getAllCars();
