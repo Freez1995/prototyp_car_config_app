@@ -7,3 +7,8 @@ export const carousel = css`
 export const dragFreeCarousel = css`
   display: flex;
 `;
+
+export const carExteriorCarousel = css`
+  width: 100%;
+  height: fit-content;
+`;
