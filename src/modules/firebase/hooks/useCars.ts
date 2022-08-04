@@ -3,9 +3,9 @@ import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
 import { isCarType, isFirestoreError } from '../typeguards';
 import { toast } from 'react-toastify';
-import { Car } from '../models';
+import { Car } from 'types';
 
-export function useFirestoreCars() {
+export function useCars() {
   const [cars, setCars] = useState<Car[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const carsCollection = collection(db, 'cars');

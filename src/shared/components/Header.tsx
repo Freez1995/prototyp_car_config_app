@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import * as styles from '../styles/Header.styles';
 import logo from 'assets/header/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { DropdownMenu } from './DropdownMenu';
 import { useFirebaseAuth } from 'modules/auth';
 
 export const Header: React.FC = () => {
   const [isToggled, setIsToggled] = useState(false);
   const { handleSignOut } = useFirebaseAuth();
+  const location = useLocation();
 
   function handleToggleDropdown() {
     setIsToggled(!isToggled);
@@ -18,7 +19,14 @@ export const Header: React.FC = () => {
     <header css={styles.header}>
       <img src={logo} />
       <nav css={styles.navbar}>
-        <Link css={styles.configureCarLink} to="/select-car">
+        <Link
+          css={
+            location.pathname === '/'
+              ? styles.configureCarLink
+              : styles.configureCarLinkHidden
+          }
+          to="/select-car"
+        >
           Configure a car
         </Link>
         <button css={styles.hamburgerButton} onClick={handleToggleDropdown}>

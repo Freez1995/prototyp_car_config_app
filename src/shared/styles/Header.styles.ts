@@ -33,6 +33,10 @@ export const configureCarLink = css`
   }
 `;
 
+export const configureCarLinkHidden = css`
+  display: none;
+`;
+
 export const hamburgerButton = css`
   width: 40px;
   height: 40px;

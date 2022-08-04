@@ -50,14 +50,14 @@ export const huge = css`
   line-height: 72px;
 `;
 
-export const carModelFont = css`
-  font-size: 48px;
-  line-height: 44px;
+export const carDescriptionBase = css`
+  font-size: 28px;
+  line-height: 32px;
   letter-spacing: -2px;
 `;
 
-export const carYearFont = css`
-  font-size: 28px;
-  line-height: 32px;
+export const carDescriptionLarge = css`
+  font-size: 48px;
+  line-height: 44px;
   letter-spacing: -2px;
 `;

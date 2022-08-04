@@ -4,7 +4,7 @@ import { db } from 'firebaseConfig';
 import { isFirestoreError } from '../typeguards';
 import { toast } from 'react-toastify';
 
-export function useFirestoreSavedCars() {
+export function useSavedCarConfigs() {
   const [configurationExist, setConfigurationExist] = useState(false);
   const savedConfigsCollection = collection(db, 'savedConfigurations');
 
@@ -12,7 +12,7 @@ export function useFirestoreSavedCars() {
     const savedConfigsQuery = query(savedConfigsCollection);
     getDocs(savedConfigsQuery)
       .then((querySnapshot) => {
-        querySnapshot.size === 0 && setConfigurationExist(false);
+        querySnapshot.empty && setConfigurationExist(false);
       })
       .catch((error) => {
         if (isFirestoreError(error)) {

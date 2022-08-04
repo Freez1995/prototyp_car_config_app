@@ -2,11 +2,11 @@
 import React, { useEffect } from 'react';
 import * as styles from '../styles/HomeContent.styles';
 import { Link } from 'react-router-dom';
-import emptyStateCar from 'assets/home/emptyStateCar.png';
-import { useFirestoreSavedCars } from 'modules/firebase';
+import emptyStateCar from 'assets/home/emptyStateCar.svg';
+import { useSavedCarConfigs } from 'modules/firebase';
 
 export const HomeContent: React.FC = () => {
-  const { configurationExist, getSavedCars } = useFirestoreSavedCars();
+  const { configurationExist, getSavedCars } = useSavedCarConfigs();
 
   useEffect(() => {
     getSavedCars();
