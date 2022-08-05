@@ -1,17 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
-import * as styles from '../styles/ImageSlide.styles';
+import * as styles from '../styles/CarouselImageSlider.styles';
 import arrowLeft from 'assets/configurator/arrowLeft.svg';
 import arrowRight from 'assets/configurator/arrowRight.svg';
+import { useRecoilValue } from 'recoil';
+import { configuratorAtoms } from '../state';
 
-interface Props {
-  exteriorImages: string[];
-}
-export const ImageSlide: React.FC<Props> = ({ exteriorImages }) => {
+export const CarouselImageSlider: React.FC = () => {
+  const exteriorImages = useRecoilValue(configuratorAtoms.carExterior);
   const [slideIndex, setSlideIndex] = useState(1);
 
   function nextSlide() {
-    if (slideIndex !== exteriorImages.length) {
+    if (slideIndex !== exteriorImages.imgUrl.length) {
       setSlideIndex(slideIndex + 1);
       return;
     }
@@ -23,13 +23,13 @@ export const ImageSlide: React.FC<Props> = ({ exteriorImages }) => {
       setSlideIndex(slideIndex - 1);
       return;
     }
-    setSlideIndex(exteriorImages.length);
+    setSlideIndex(exteriorImages.imgUrl.length);
   }
 
   return (
     <>
       <div css={styles.carouselContainer}>
-        {exteriorImages.map((image, index) => (
+        {exteriorImages.imgUrl.map((image, index) => (
           <div
             key={index}
             css={
@@ -48,7 +48,9 @@ export const ImageSlide: React.FC<Props> = ({ exteriorImages }) => {
         </button>
         <p css={styles.currentSlideText}>
           {slideIndex}{' '}
-          <span css={styles.maxSlidesText}>/ {exteriorImages.length}</span>
+          <span css={styles.maxSlidesText}>
+            / {exteriorImages.imgUrl.length}
+          </span>
         </p>
         <button css={styles.carouselButton} onClick={nextSlide}>
           <img src={arrowRight} />

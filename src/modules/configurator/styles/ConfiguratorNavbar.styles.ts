@@ -1,31 +1,30 @@
 import { css } from '@emotion/react';
-import { carDescriptionBase } from 'shared/styles/fonts';
-import { colors, fontFamily } from 'shared/styles/variables';
+import { base } from 'shared/styles/fonts';
+import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
-export const navbar = css`
-  display: flex;
-  padding: 24px 40px;
-  justify-content: space-between;
-  align-items: center;
-  background-color: ${colors.backgroundPrimaryLightest};
-  border-bottom: 1px solid ${colors.borderPrimaryLight};
-`;
-
-export const backButton = css`
-  ${carDescriptionBase}
-  font-family: ${fontFamily.opticianSans};
+export const linkContainer = css`
   display: grid;
   grid-template-columns: auto auto auto;
+  column-gap: 40px;
   align-items: center;
-  column-gap: 12px;
-  background-color: transparent;
-  border: none;
 `;
 
-export const yearText = css`
+export const linkContainerHidden = css`
+  display: none;
+`;
+
+export const linkNumber = css`
+  ${base}
+  font-family: ${fontFamily.inter};
   color: ${colors.textPrimary};
 `;
 
-export const modelText = css`
+export const linkText = css`
+  ${linkNumber}
   color: ${colors.textPrimaryDarkest};
+`;
+
+export const linkActive = css`
+  ${linkNumber}
+  font-weight: ${fontWeight.bold};
 `;

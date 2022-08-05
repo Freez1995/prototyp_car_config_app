@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import * as styles from '../styles/DetailsCard.styles';
+import * as styles from '../styles/ConfigurationDetailsCard.styles';
 
 interface Props {
   image: string;
@@ -8,7 +8,7 @@ interface Props {
   detailsPrice: number;
 }
 
-export const DetailsCard: React.FC<Props> = ({
+export const ConfigurationDetailsCard: React.FC<Props> = ({
   image,
   detailsText,
   detailsPrice,

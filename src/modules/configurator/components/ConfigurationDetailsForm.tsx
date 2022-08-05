@@ -1,16 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import * as styles from '../styles/FormDetails.styles';
+import * as styles from '../styles/ConfigurationDetailsForm.styles';
 import { Link } from 'react-router-dom';
-import { DetailsCard } from './DetailsCard';
-import { PriceContainer } from './PriceContainer';
+import { ConfigurationDetailsCard } from './ConfigurationDetailsCard';
+import { TotalPriceCard } from './TotalPriceCard';
 import { useRecoilValue } from 'recoil';
 import { configuratorAtoms, configuratorSelectors } from '../state';
 
 interface Props {
-  type: 'configurationView' | 'configurationSummary';
+  type: 'configurationView' | 'configuratorSummary';
 }
-export const FormDetails: React.FC<Props> = ({ type }) => {
+export const ConfigurationDetailsForm: React.FC<Props> = ({ type }) => {
   const selectedCar = useRecoilValue(configuratorAtoms.selectedCar);
   const selectedColors = useRecoilValue(configuratorAtoms.selectedColor);
   const selectedWheels = useRecoilValue(configuratorAtoms.selectedWheels);
@@ -24,7 +24,7 @@ export const FormDetails: React.FC<Props> = ({ type }) => {
           <h1 css={styles.carName}>{selectedCar.carModel.toUpperCase()}</h1>
           <p css={styles.carYear}>{selectedCar.carYear}</p>
         </article>
-        <PriceContainer totalPrice={totalPrice} type="column" />
+        <TotalPriceCard direction="column" />
       </section>
       <article css={styles.detailsContainer}>
         <h2 css={styles.detailsText}>Your configuration details</h2>
@@ -34,21 +34,21 @@ export const FormDetails: React.FC<Props> = ({ type }) => {
               <h2>Exterior</h2>
               <Link
                 css={
-                  type === 'configurationSummary'
+                  type === 'configuratorSummary'
                     ? styles.detailsHeadingLink
                     : styles.detailsHeadingLinkHidden
                 }
-                to="/configuration-exterior"
+                to="/configurator-exterior"
               >
                 Edit
               </Link>
             </article>
-            <DetailsCard
+            <ConfigurationDetailsCard
               image={selectedColors.iconUrl}
               detailsText={selectedColors.colorName}
               detailsPrice={selectedColors.colorPrice}
             />
-            <DetailsCard
+            <ConfigurationDetailsCard
               image={selectedWheels.iconUrl}
               detailsText={selectedWheels.wheelsModel}
               detailsPrice={selectedWheels.wheelsPrice}
@@ -59,7 +59,7 @@ export const FormDetails: React.FC<Props> = ({ type }) => {
               <h2>Interior</h2>
               <Link
                 css={
-                  type === 'configurationSummary'
+                  type === 'configuratorSummary'
                     ? styles.detailsHeadingLink
                     : styles.detailsHeadingLinkHidden
                 }
@@ -68,7 +68,7 @@ export const FormDetails: React.FC<Props> = ({ type }) => {
                 Edit
               </Link>
             </article>
-            <DetailsCard
+            <ConfigurationDetailsCard
               image={selectedInteriors.iconUrl}
               detailsText={selectedInteriors.interiorName}
               detailsPrice={selectedInteriors.interiorPrice}

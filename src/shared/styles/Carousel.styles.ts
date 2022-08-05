@@ -9,6 +9,6 @@ export const dragFreeCarousel = css`
 `;
 
 export const carExteriorCarousel = css`
-  width: 100%;
+  min-width: 100%;
   height: fit-content;
 `;

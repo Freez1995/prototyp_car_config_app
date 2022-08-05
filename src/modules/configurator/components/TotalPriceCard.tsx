@@ -1,16 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import * as styles from '../styles/PriceContainer.styles';
+import * as styles from '../styles/TotalPriceCard.styles';
 import totalPriceIcon from 'assets/configurator/totalPriceIcon.svg';
+import { configuratorSelectors } from '../state';
+import { useRecoilValue } from 'recoil';
 
 interface Props {
-  type: 'row' | 'column';
-  totalPrice: number;
+  direction: 'row' | 'column';
 }
 
-export const PriceContainer: React.FC<Props> = ({ totalPrice, type }) => {
+export const TotalPriceCard: React.FC<Props> = ({ direction }) => {
+  const totalPrice = useRecoilValue(configuratorSelectors.carTotalPrice);
   return (
-    <div css={type === 'row' ? styles.containerRow : styles.containerColumn}>
+    <div
+      css={direction === 'row' ? styles.containerRow : styles.containerColumn}
+    >
       <figure css={styles.priceFigure}>
         <figcaption css={styles.priceFigureText}>TOTAL</figcaption>
         <img src={totalPriceIcon} />

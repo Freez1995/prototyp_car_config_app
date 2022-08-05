@@ -1,18 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import * as styles from '../styles/ViewForm.styles';
+import * as styles from '../styles/ConfigurationViewForm.styles';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { configuratorAtoms } from '../state';
-import { ConfiguratorNavbar } from './ConfiguratorNavbar';
+import { Navbar } from './Navbar';
 import { Carousel } from 'shared/components';
-import { ImageSlide } from './ImageSlide';
-import { FormDetails } from './FormDetails';
+import { CarouselImageSlider } from './CarouselImageSlider';
+import { ConfigurationDetailsForm } from './ConfigurationDetailsForm';
 import { useCarInitialState } from '../hooks';
 
-export const ViewForm: React.FC = () => {
+export const ConfigurationViewForm: React.FC = () => {
   const { isLoading, resetSelectedCarState } = useCarInitialState();
-  const exterior = useRecoilValue(configuratorAtoms.carExterior);
   const navigate = useNavigate();
 
   function handleOnDelete() {
@@ -22,20 +19,20 @@ export const ViewForm: React.FC = () => {
 
   return !isLoading ? (
     <div>
-      <ConfiguratorNavbar>
-        <Link css={styles.editConfiguration} to="/configuration-exterior">
+      <Navbar>
+        <Link css={styles.editConfiguration} to="/configurator-exterior">
           Edit configuration
         </Link>
         <button css={styles.deleteConfiguration} onClick={handleOnDelete}>
           Delete
         </button>
-      </ConfiguratorNavbar>
-      <article css={styles.contentWrapper}>
+      </Navbar>
+      <section css={styles.contentWrapper}>
         <Carousel type="carExteriorCarousel">
-          <ImageSlide exteriorImages={exterior.imgUrl} />
+          <CarouselImageSlider />
         </Carousel>
-        <FormDetails type="configurationView" />
-      </article>
+        <ConfigurationDetailsForm type="configurationView" />
+      </section>
     </div>
   ) : null;
 };

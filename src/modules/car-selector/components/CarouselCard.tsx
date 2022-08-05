@@ -38,7 +38,7 @@ export const CarouselCard: React.FC<Props> = ({
       carFrontImg: carFrontImg,
       carPrice: carPrice,
     });
-    navigate('/configurator-view', { replace: true });
+    navigate('/configuration-view', { replace: true });
   }
 
   return (
