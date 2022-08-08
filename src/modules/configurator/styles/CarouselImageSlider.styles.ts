@@ -2,10 +2,17 @@ import { css } from '@emotion/react';
 import { medium } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
-export const carouselContainer = css`
+export const carouselExteriorContainer = css`
   position: relative;
   max-width: 100%;
   min-height: 340px;
+`;
+
+export const carouselInteriorContainer = css`
+  position: relative;
+  max-width: 100%;
+  height: 440px;
+  margin: 0 32px 0 40px;
 `;
 
 export const carouselSlide = css`
@@ -22,17 +29,25 @@ export const activeSlide = css`
   opacity: 1;
 `;
 
-export const carouselImage = css`
+export const carouselExteriorImage = css`
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
+  object-position: 50% 50%;
+`;
+
+export const carouselInteriorImage = css`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
 `;
 
 export const carouselNavigation = css`
   ${medium}
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  margin: 40px auto 0;
   font-family: ${fontFamily.inter};
   font-weight: ${fontWeight.regular};
 `;

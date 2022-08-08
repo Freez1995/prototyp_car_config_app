@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface Props {
   carId: string;
-  carFrontImg: string;
+  carFrontImg?: string;
   carYear: number;
   carModel: string;
   carPrice: number;
@@ -22,9 +22,10 @@ export const CarouselCard: React.FC<Props> = ({
   carPrice,
 }) => {
   const setSelectedCar = useSetRecoilState(configuratorAtoms.selectedCar);
+  const { getCarInteriors } = useCarInteriors();
   const { getCarColors } = useCarColors();
   const { getCarWheels } = useCarWheels();
-  const { getCarInteriors } = useCarInteriors();
+
   const navigate = useNavigate();
 
   function handleOnClick() {
@@ -35,7 +36,6 @@ export const CarouselCard: React.FC<Props> = ({
       carId: carId,
       carModel: carModel,
       carYear: carYear,
-      carFrontImg: carFrontImg,
       carPrice: carPrice,
     });
     navigate('/configuration-view', { replace: true });

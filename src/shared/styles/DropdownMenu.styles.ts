@@ -5,7 +5,7 @@ import { boxShadow, colors } from './variables';
 export const dropdownContainer = css`
   ${small}
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   width: max-content;

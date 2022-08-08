@@ -4,7 +4,7 @@ import * as styles from '../styles/Carousel.styles';
 import useEmblaCarousel from 'embla-carousel-react';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  type: 'dragFreeCarousel' | 'carExteriorCarousel';
+  type: 'dragFreeCarousel' | 'carDetailsCarousel';
   children: React.ReactNode;
 }
 
@@ -12,7 +12,7 @@ export const Carousel: React.FC<Props> = ({ type, children, ...rest }) => {
   const [emblaRef] = useEmblaCarousel({
     containScroll: 'trimSnaps',
     dragFree: type === 'dragFreeCarousel' ? true : false,
-    draggable: type === 'carExteriorCarousel' ? false : true,
+    draggable: type === 'dragFreeCarousel' ? true : false,
   });
 
   return (
