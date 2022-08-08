@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Navbar } from './Navbar';
 
 interface Props {
-  isNavigationHidden: boolean;
+  isNavigationHidden?: boolean;
 }
 
 export const ConfiguratorNavbar: React.FC<Props> = ({ isNavigationHidden }) => {

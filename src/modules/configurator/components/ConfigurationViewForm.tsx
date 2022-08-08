@@ -28,8 +28,8 @@ export const ConfigurationViewForm: React.FC = () => {
         </button>
       </Navbar>
       <section css={styles.contentWrapper}>
-        <Carousel type="carExteriorCarousel">
-          <CarouselImageSlider />
+        <Carousel type="carDetailsCarousel">
+          <CarouselImageSlider imagesType="exterior" />
         </Carousel>
         <ConfigurationDetailsForm type="configurationView" />
       </section>

@@ -3,7 +3,7 @@ import { base } from 'shared/styles/fonts';
 import { colors, fontFamily } from 'shared/styles/variables';
 
 export const contentWrapper = css`
-  padding: 40px 176px;
+  padding: 40px 156px;
 `;
 
 export const editConfiguration = css`

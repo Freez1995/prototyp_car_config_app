@@ -7,13 +7,15 @@ export const containerColumn = css`
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
+  min-width: max-content;
 `;
 
 export const containerRow = css`
   display: grid;
-  align-items: flex-end;
+  align-items: end;
   grid-template-columns: auto auto;
   column-gap: 56px;
+  min-width: max-content;
 `;
 
 export const priceFigure = css`

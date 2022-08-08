@@ -63,7 +63,7 @@ export const ConfigurationDetailsForm: React.FC<Props> = ({ type }) => {
                     ? styles.detailsHeadingLink
                     : styles.detailsHeadingLinkHidden
                 }
-                to="/configuration-interior"
+                to="/configurator-interior"
               >
                 Edit
               </Link>

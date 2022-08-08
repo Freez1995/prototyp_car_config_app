@@ -38,6 +38,7 @@ export const detailsContainer = css`
 export const detailsText = css`
   ${large}
   color: ${colors.textPrimaryDarkest};
+  font-weight: ${fontWeight.regular};
 `;
 
 export const details = css`

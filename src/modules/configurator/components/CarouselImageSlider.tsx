@@ -1,17 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as styles from '../styles/CarouselImageSlider.styles';
 import arrowLeft from 'assets/configurator/arrowLeft.svg';
 import arrowRight from 'assets/configurator/arrowRight.svg';
 import { useRecoilValue } from 'recoil';
 import { configuratorAtoms } from '../state';
 
-export const CarouselImageSlider: React.FC = () => {
-  const exteriorImages = useRecoilValue(configuratorAtoms.carExterior);
+interface Props {
+  imagesType: 'exterior' | 'interior';
+}
+
+export const CarouselImageSlider: React.FC<Props> = ({ imagesType }) => {
+  const exterior = useRecoilValue(configuratorAtoms.carExterior);
+  const interior = useRecoilValue(configuratorAtoms.selectedInterior);
+  const [images, setImages] = useState<string[]>([]);
   const [slideIndex, setSlideIndex] = useState(1);
 
   function nextSlide() {
-    if (slideIndex !== exteriorImages.imgUrl.length) {
+    if (slideIndex !== images.length) {
       setSlideIndex(slideIndex + 1);
       return;
     }
@@ -23,13 +29,25 @@ export const CarouselImageSlider: React.FC = () => {
       setSlideIndex(slideIndex - 1);
       return;
     }
-    setSlideIndex(exteriorImages.imgUrl.length);
+    setSlideIndex(images.length);
   }
+
+  useEffect(() => {
+    imagesType === 'exterior'
+      ? setImages(exterior.imgUrl)
+      : setImages(interior.imgUrl);
+  }, [imagesType, exterior, interior]);
 
   return (
     <>
-      <div css={styles.carouselContainer}>
-        {exteriorImages.imgUrl.map((image, index) => (
+      <div
+        css={
+          imagesType === 'exterior'
+            ? styles.carouselExteriorContainer
+            : styles.carouselInteriorContainer
+        }
+      >
+        {images.map((image, index) => (
           <div
             key={index}
             css={
@@ -38,7 +56,14 @@ export const CarouselImageSlider: React.FC = () => {
                 : styles.carouselSlide
             }
           >
-            <img css={styles.carouselImage} src={image} />
+            <img
+              css={
+                imagesType === 'exterior'
+                  ? styles.carouselExteriorImage
+                  : styles.carouselInteriorImage
+              }
+              src={image}
+            />
           </div>
         ))}
       </div>
@@ -47,10 +72,7 @@ export const CarouselImageSlider: React.FC = () => {
           <img src={arrowLeft} />
         </button>
         <p css={styles.currentSlideText}>
-          {slideIndex}{' '}
-          <span css={styles.maxSlidesText}>
-            / {exteriorImages.imgUrl.length}
-          </span>
+          {slideIndex} <span css={styles.maxSlidesText}>/ {images.length}</span>
         </p>
         <button css={styles.carouselButton} onClick={nextSlide}>
           <img src={arrowRight} />
