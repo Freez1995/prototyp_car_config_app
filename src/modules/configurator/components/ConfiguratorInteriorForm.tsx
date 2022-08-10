@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
-import * as styles from '../styles/ConfiguratorExteriorForm.styles';
+import * as styles from '../styles/ConfiguratorExteriorInteriorForm.styles';
 import { useRecoilValue } from 'recoil';
 import { configuratorAtoms } from '../state';
 import { ConfiguratorNavbar } from './ConfiguratorNavbar';

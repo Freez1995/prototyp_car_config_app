@@ -8,6 +8,6 @@ export * from './ConfiguratorNavbar.styles';
 export * from './SidebarCard.styles';
 export * from './SelectorSidebar.styles';
 export * from './SelectorSidebarCard.styles';
-export * from './ConfiguratorExteriorForm.styles';
+export * from './ConfiguratorExteriorInteriorForm.styles';
 export * from './ConfiguratorSummaryForm.styles';
 export * from './Footer.styles';

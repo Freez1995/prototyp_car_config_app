@@ -3,8 +3,9 @@ import { medium, xxLarge } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const summaryWrapper = css`
-  padding: 40px 176px;
+  padding: 40px 156px;
 `;
+
 export const summaryHeadingContainer = css`
   display: grid;
   row-gap: 16px;
