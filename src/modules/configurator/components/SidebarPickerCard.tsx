@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import * as styles from '../styles/SelectorSidebarCard.styles';
+import * as styles from '../styles/SidebarPickerCard.styles';
 import checkedIcon from 'assets/configurator/checkedIcon.svg';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   isChecked: boolean;
 }
 
-export const SelectorSidebarCard: React.FC<Props> = ({
+export const SidebarPickerCard: React.FC<Props> = ({
   radioButtonName,
   radioButtonId,
   radioButtonValue,

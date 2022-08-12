@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as styles from '../styles/ConfiguratorExteriorInteriorForm.styles';
 import { useRecoilValue } from 'recoil';
 import { Carousel } from 'shared/components';
@@ -9,42 +9,51 @@ import { CarouselImageSlider } from './CarouselImageSlider';
 import { TotalPriceCard } from './TotalPriceCard';
 import { ReactComponent as RightArrow } from 'assets/configurator/arrowRight.svg';
 import { SidebarCard } from './SidebarCard';
-import { SelectorSidebar } from './SelectorSidebar';
-import { useCarExterior } from 'modules/firebase/hooks/useCarExterior';
 import { Link } from 'react-router-dom';
+import { SidebarColorPicker } from './SidebarColorPicker';
+import { SidebarWheelsPicker } from './SidebarWheelsPicker';
 
 export const ConfiguratorExteriorForm: React.FC = () => {
   const [selectedSidebarItem, setSelectedSidebarItem] = useState('');
-  const [selectorSidebarToggled, setSelectorSidebarToggled] = useState(false);
-  const { getCarExterior } = useCarExterior();
+  const [colorPickerToggled, setColorPickerToggled] = useState(false);
+  const [wheelsPickerToggled, setWheelsPickerToggled] = useState(false);
   const selectedColor = useRecoilValue(configuratorAtoms.selectedColor);
   const selectedWheels = useRecoilValue(configuratorAtoms.selectedWheels);
 
-  function handleSidebarItemClick(itemType: string) {
+  function handleSidebarWheelsSelect(itemType: string) {
     setSelectedSidebarItem(itemType);
-    setSelectorSidebarToggled(true);
+    setWheelsPickerToggled(true);
   }
 
-  function closeSelectorSidebar() {
-    setSelectorSidebarToggled(false);
+  function handleSidebarColorSelect(itemType: string) {
+    setSelectedSidebarItem(itemType);
+    setColorPickerToggled(true);
   }
 
-  useEffect(() => {
-    getCarExterior(selectedColor.colorId, selectedWheels.wheelsId);
-  }, [selectedColor, selectedWheels]);
+  function closeSidebarPicker() {
+    setWheelsPickerToggled(false);
+    setColorPickerToggled(false);
+  }
 
   return (
     <div css={styles.configurationContainer}>
-      <ConfiguratorNavbar isNavigationHidden={selectorSidebarToggled} />
+      <ConfiguratorNavbar
+        isNavigationHidden={colorPickerToggled || wheelsPickerToggled}
+      />
       <section css={styles.contentContainer}>
         <div css={styles.carouselSiderContainer}>
           <Carousel type="carDetailsCarousel">
             <CarouselImageSlider imagesType="exterior" />
           </Carousel>
         </div>
-        <SelectorSidebar
-          isToggled={selectorSidebarToggled}
-          hideSidebar={closeSelectorSidebar}
+        <SidebarColorPicker
+          isToggled={colorPickerToggled}
+          hideSidebar={closeSidebarPicker}
+          selectedSidebarItem={selectedSidebarItem}
+        />
+        <SidebarWheelsPicker
+          isToggled={wheelsPickerToggled}
+          hideSidebar={closeSidebarPicker}
           selectedSidebarItem={selectedSidebarItem}
         />
         <div css={styles.sidebar}>
@@ -53,13 +62,13 @@ export const ConfiguratorExteriorForm: React.FC = () => {
               itemImage={selectedColor.iconUrl}
               itemName={selectedColor.colorName}
               itemType="paint color"
-              handleItemClick={handleSidebarItemClick}
+              handleItemClick={handleSidebarColorSelect}
             />
             <SidebarCard
               itemImage={selectedWheels.iconUrl}
               itemName={selectedWheels.wheelsModel}
               itemType="wheels"
-              handleItemClick={handleSidebarItemClick}
+              handleItemClick={handleSidebarWheelsSelect}
             />
           </div>
           <div>
