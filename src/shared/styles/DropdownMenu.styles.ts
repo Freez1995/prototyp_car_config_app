@@ -21,6 +21,7 @@ export const mainMenuDropdown = css`
 
 export const carConfigDropdown = css`
   ${dropdownContainer}
+  min-width: 200px;
   right: 0px;
-  top: 4px;
+  top: 30px;
 `;

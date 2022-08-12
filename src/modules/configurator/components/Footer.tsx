@@ -1,12 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import * as styles from '../styles/Footer.styles';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { configuratorAtoms } from '../state';
 import { TotalPriceCard } from './TotalPriceCard';
+import { useCarConfiguration } from 'modules/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const selectedCar = useRecoilValue(configuratorAtoms.selectedCar);
+  const currentDocumentId = useRecoilValue(configuratorAtoms.currentDocumentId);
+  const resetCurrentDocumentId = useResetRecoilState(
+    configuratorAtoms.currentDocumentId,
+  );
+  const { saveCarConfiguration, updateCarConfiguration } =
+    useCarConfiguration();
+  const navigate = useNavigate();
+
+  function onSaveConfiguration() {
+    if (currentDocumentId) {
+      updateCarConfiguration(currentDocumentId);
+      resetCurrentDocumentId();
+    } else {
+      saveCarConfiguration();
+    }
+    navigate('/', { replace: true });
+  }
+
   return (
     <footer css={styles.footer}>
       <div css={styles.footerCarDetails}>
@@ -15,7 +35,9 @@ export const Footer: React.FC = () => {
       </div>
       <div css={styles.saveConfigContainer}>
         <TotalPriceCard direction="row" />
-        <button css={styles.footerButton}>Save your configuration</button>
+        <button css={styles.footerButton} onClick={onSaveConfiguration}>
+          Save your configuration
+        </button>
       </div>
     </footer>
   );

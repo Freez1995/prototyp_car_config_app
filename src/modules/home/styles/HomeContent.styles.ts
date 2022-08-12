@@ -65,3 +65,13 @@ export const textLink = css`
     color: ${colors.globalPrimaryLighter};
   }
 `;
+
+export const savedConfigurationCards = css`
+  & > :first-of-type {
+    margin-top: 48px;
+    margin-bottom: 28px;
+  }
+  & > :nth-of-type(n + 2) {
+    margin-bottom: 28px;
+  }
+`;
