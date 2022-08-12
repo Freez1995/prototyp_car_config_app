@@ -19,7 +19,12 @@ export function useCarWheels() {
           const wheelsId = snapshot.id;
           const data = snapshot.data();
           if (isWheelsType(data)) {
-            wheelsList.push({ ...data, wheelsId: wheelsId });
+            wheelsList.push({
+              wheelsId: wheelsId,
+              wheelsModel: data.wheelsModel,
+              wheelsPrice: data.wheelsPrice,
+              iconUrl: data.iconUrl,
+            });
           }
         });
         setWheels(wheelsList);

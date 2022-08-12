@@ -1,61 +1,39 @@
 import { useEffect, useState } from 'react';
-import { useCarExterior } from 'modules/firebase/hooks/useCarExterior';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
+import { Color, Interior, Wheels } from 'types';
 import { configuratorAtoms } from '../state';
 
 export function useCarInitialState() {
-  const { getCarExterior } = useCarExterior();
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [isStateSet, setIsStateSet] = useState(false);
   const colors = useRecoilValue(configuratorAtoms.carColors);
   const wheels = useRecoilValue(configuratorAtoms.carWheels);
   const interiors = useRecoilValue(configuratorAtoms.carInteriors);
-  const [selectedColor, setSelectedColor] = useRecoilState(
-    configuratorAtoms.selectedColor,
-  );
-  const [selectedWheels, setSelectedWheels] = useRecoilState(
-    configuratorAtoms.selectedWheels,
-  );
-  const [selectedInterior, setSelectedInterior] = useRecoilState(
-    configuratorAtoms.selectedInterior,
-  );
 
-  const resetColors = useResetRecoilState(configuratorAtoms.carColors);
-  const resetWheels = useResetRecoilState(configuratorAtoms.carWheels);
-  const resetInteriors = useResetRecoilState(configuratorAtoms.carInteriors);
-  const resetSelectedColors = useResetRecoilState(
-    configuratorAtoms.selectedColor,
-  );
-  const resetSelectedWheels = useResetRecoilState(
-    configuratorAtoms.selectedWheels,
-  );
-  const resetSelectedInteriors = useResetRecoilState(
-    configuratorAtoms.selectedInterior,
-  );
-  const resetExterior = useResetRecoilState(configuratorAtoms.carExterior);
+  const [initialColor, setInitialColor] = useState<Color>({
+    colorId: '',
+    colorName: '',
+    colorPrice: 0,
+    iconUrl: '',
+  });
+  const [initialWheels, setIntialWheels] = useState<Wheels>({
+    wheelsId: '',
+    wheelsModel: '',
+    wheelsPrice: 0,
+    iconUrl: '',
+  });
+  const [initialInterior, setInitialInterior] = useState<Interior>({
+    interiorId: '',
+    interiorName: '',
+    interiorPrice: 0,
+    iconUrl: '',
+    imgUrl: [],
+  });
 
   function setInitialCarState() {
-    if (
-      !selectedColor.colorId &&
-      !selectedInterior.interiorId &&
-      !selectedWheels.wheelsId
-    ) {
-      setSelectedColor(colors[0]);
-      setSelectedWheels(wheels[0]);
-      setSelectedInterior(interiors[0]);
-      getCarExterior(colors[0].colorId, wheels[0].wheelsId);
-    }
-    setIsLoading(false);
-  }
-
-  function resetSelectedCarState() {
-    resetColors();
-    resetWheels();
-    resetInteriors();
-    resetExterior();
-    resetSelectedColors();
-    resetSelectedWheels();
-    resetSelectedInteriors();
+    setInitialColor(colors[0]);
+    setIntialWheels(wheels[0]);
+    setInitialInterior(interiors[0]);
+    setIsStateSet(true);
   }
 
   useEffect(() => {
@@ -65,8 +43,10 @@ export function useCarInitialState() {
   }, [colors, wheels, interiors]);
 
   return {
-    isLoading,
-    resetSelectedCarState,
+    isStateSet,
     setInitialCarState,
+    initialColor,
+    initialWheels,
+    initialInterior,
   };
 }

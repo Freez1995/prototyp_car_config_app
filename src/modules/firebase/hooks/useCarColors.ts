@@ -19,7 +19,12 @@ export function useCarColors() {
           const colorId = snapshot.id;
           const data = snapshot.data();
           if (isColorType(data)) {
-            colorList.push({ ...data, colorId: colorId });
+            colorList.push({
+              colorId: colorId,
+              colorName: data.colorName,
+              colorPrice: data.colorPrice,
+              iconUrl: data.iconUrl,
+            });
           }
         });
         setColors(colorList);

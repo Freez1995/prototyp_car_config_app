@@ -22,7 +22,13 @@ export function useCarInteriors() {
           const interiorId = snapshot.id;
           const data = snapshot.data();
           if (isInteriorType(data)) {
-            interiorsList.push({ ...data, interiorId: interiorId });
+            interiorsList.push({
+              interiorId: interiorId,
+              interiorName: data.interiorName,
+              interiorPrice: data.interiorPrice,
+              iconUrl: data.iconUrl,
+              imgUrl: data.imgUrl,
+            });
           }
         });
         setInteriors(interiorsList);
