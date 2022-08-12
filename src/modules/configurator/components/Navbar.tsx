@@ -6,7 +6,6 @@ import { useRecoilValue } from 'recoil';
 import { configuratorAtoms } from '../state';
 import { useNavigate } from 'react-router-dom';
 import leftArrow from 'assets/configurator/arrowLeft.svg';
-import { useCarInitialState } from '../hooks';
 
 interface Props {
   children: React.ReactNode;
@@ -15,11 +14,9 @@ interface Props {
 
 export const Navbar: React.FC<Props> = ({ children, extraStyles }) => {
   const navigate = useNavigate();
-  const { resetSelectedCarState } = useCarInitialState();
   const selectedCar = useRecoilValue(configuratorAtoms.selectedCar);
 
   function handleNavigateBack() {
-    resetSelectedCarState();
     navigate('/', { replace: true });
   }
 

@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { useCarColors, useCarInteriors, useCarWheels } from 'modules/firebase';
+import {
+  useCarColors,
+  useCarExterior,
+  useCarInteriors,
+  useCarWheels,
+} from 'modules/firebase';
 import * as styles from '../styles/CarouselCard.styles';
 import { useSetRecoilState } from 'recoil';
 import { configuratorAtoms } from 'modules/configurator';
@@ -25,13 +30,14 @@ export const CarouselCard: React.FC<Props> = ({
   const { getCarInteriors } = useCarInteriors();
   const { getCarColors } = useCarColors();
   const { getCarWheels } = useCarWheels();
-
+  const { getCarExteriors } = useCarExterior();
   const navigate = useNavigate();
 
   function handleOnClick() {
     getCarColors(carId);
     getCarWheels(carId);
     getCarInteriors(carId);
+    getCarExteriors(carId);
     setSelectedCar({
       carId: carId,
       carModel: carModel,

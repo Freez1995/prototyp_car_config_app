@@ -4,15 +4,16 @@ import * as styles from '../styles/CarouselImageSlider.styles';
 import arrowLeft from 'assets/configurator/arrowLeft.svg';
 import arrowRight from 'assets/configurator/arrowRight.svg';
 import { useRecoilValue } from 'recoil';
-import { configuratorAtoms } from '../state';
+import { configuratorAtoms, configuratorSelectors } from '../state';
 
 interface Props {
   imagesType: 'exterior' | 'interior';
 }
 
 export const CarouselImageSlider: React.FC<Props> = ({ imagesType }) => {
-  const exterior = useRecoilValue(configuratorAtoms.carExterior);
+  const exteriorImages = useRecoilValue(configuratorSelectors.selectedExterior);
   const interior = useRecoilValue(configuratorAtoms.selectedInterior);
+
   const [images, setImages] = useState<string[]>([]);
   const [slideIndex, setSlideIndex] = useState(1);
 
@@ -34,9 +35,9 @@ export const CarouselImageSlider: React.FC<Props> = ({ imagesType }) => {
 
   useEffect(() => {
     imagesType === 'exterior'
-      ? setImages(exterior.imgUrl)
+      ? setImages(exteriorImages)
       : setImages(interior.imgUrl);
-  }, [imagesType, exterior, interior]);
+  }, [interior, exteriorImages]);
 
   return (
     <>

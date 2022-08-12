@@ -4,14 +4,11 @@ import * as styles from '../styles/SelectorContent.styles';
 import { Carousel } from 'shared/components';
 import { CarouselCard } from './CarouselCard';
 import { useCars } from 'modules/firebase';
-import { useCarInitialState } from 'modules/configurator';
 
 export const SelectorContent: React.FC = () => {
   const { cars, isLoaded, getAllCars } = useCars();
-  const { resetSelectedCarState } = useCarInitialState();
 
   useEffect(() => {
-    resetSelectedCarState();
     getAllCars();
   }, []);
 

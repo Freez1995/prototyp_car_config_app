@@ -16,12 +16,9 @@ const carInteriors = atom<Interior[]>({
   default: [],
 });
 
-const carExterior = atom<Exterior>({
-  key: 'configurator.exterior.state',
-  default: {
-    exteriorId: '',
-    imgUrl: [],
-  },
+const carExterior = atom<Exterior[]>({
+  key: 'configurator.exteriors.state',
+  default: [],
 });
 
 const selectedColor = atom<Color>({
@@ -66,6 +63,11 @@ const selectedCar = atom<Car>({
   },
 });
 
+const currentDocumentId = atom<string>({
+  key: 'configurator.currentDocId.state',
+  default: '',
+});
+
 export const configuratorAtoms = {
   carColors,
   selectedColor,
@@ -75,4 +77,5 @@ export const configuratorAtoms = {
   selectedInterior,
   carExterior,
   selectedCar,
+  currentDocumentId,
 };
