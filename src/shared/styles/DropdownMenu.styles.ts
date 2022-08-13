@@ -13,7 +13,7 @@ export const dropdownContainer = css`
   box-shadow: ${boxShadow.shadowPrimary};
 `;
 
-export const mainMenuDropdown = css`
+export const headerDropdown = css`
   ${dropdownContainer}
   right: -40px;
   top: 60px;

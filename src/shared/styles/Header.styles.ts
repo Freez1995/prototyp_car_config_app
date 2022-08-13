@@ -57,7 +57,6 @@ export const dropdownItemLink = css`
 export const dropdownItemButton = css`
   ${dropdownItem}
   background-color: transparent;
-  padding: 16px 25px;
   border: none;
   text-align: start;
 `;
