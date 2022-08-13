@@ -30,7 +30,20 @@ export const dropdownHidden = css`
   display: none;
 `;
 
-export const hamburgerButton = css`
+export const dotsDropdown = css`
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 10px 6px 0 0;
+`;
+
+export const hamburgerDropdown = css`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   border: none;
@@ -84,13 +97,4 @@ export const hamburgerButtonOpened = css`
     position: absolute;
     transform: rotate(45deg);
   }
-`;
-
-export const dotsDropdown = css`
-  display: flex;
-  justify-content: flex-end;
-  border: none;
-  background-color: transparent;
-  padding: 0 6px;
-  margin: 10px 6px 0 0;
 `;

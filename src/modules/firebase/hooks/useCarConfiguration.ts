@@ -38,7 +38,9 @@ export function useCarConfiguration() {
       interior: carConfiguration.interior,
       createdAt: carConfiguration.createdAt,
     })
-      .then(() => toast.success('Configuration successfully saved'))
+      .then(() =>
+        toast.success('Configuration successfully saved', { autoClose: 2000 }),
+      )
       .catch((error) => {
         if (isFirestoreError(error)) {
           toast.error(error.message);
@@ -58,7 +60,11 @@ export function useCarConfiguration() {
       interior: carConfiguration.interior,
       createdAt: carConfiguration.createdAt,
     })
-      .then(() => toast.success('Configuration successfully updated'))
+      .then(() =>
+        toast.success('Configuration successfully updated', {
+          autoClose: 2000,
+        }),
+      )
       .catch((error) => {
         if (isFirestoreError(error)) {
           toast.error(error.message);
@@ -70,7 +76,11 @@ export function useCarConfiguration() {
 
   function deleteCarConfiguration(documentId: string) {
     deleteDoc(doc(configurationsCollection, documentId))
-      .then(() => toast.success('Configuration successfully deleted'))
+      .then(() =>
+        toast.success('Configuration successfully deleted', {
+          autoClose: 2000,
+        }),
+      )
       .catch((error) => {
         if (isFirestoreError(error)) {
           toast.error(error.message);
