@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
-import * as styles from '../styles/SavedConfiguration.styles';
-import dots from 'assets/home/dots.svg';
+import React from 'react';
+import * as styles from '../styles/SavedConfigurationCard.styles';
 import { DropdownMenu } from 'shared/components';
 import { SavedCarConfiguration, UpdateCarConfiguration } from 'types';
 import { useCarConfiguration } from 'modules/firebase';
@@ -21,14 +20,9 @@ export const SavedConfigurationCard: React.FC<Props> = ({
   data,
   updateConfiguration,
 }) => {
-  const [isToggled, setIsToggled] = useState(false);
   const { car, color, wheels, interior, createdAt, carSideImage, documentId } =
     data;
   const { deleteCarConfiguration } = useCarConfiguration();
-
-  function handleToggleDropdown() {
-    setIsToggled(!isToggled);
-  }
 
   function handleOnEditConfiguration() {
     updateConfiguration({ car, color, wheels, interior, documentId });
@@ -74,10 +68,7 @@ export const SavedConfigurationCard: React.FC<Props> = ({
         </section>
       </div>
       <div css={styles.dropdownContainer}>
-        <button css={styles.dotsButton} onClick={handleToggleDropdown}>
-          <img className="dots" src={dots} />
-        </button>
-        <DropdownMenu isToggled={isToggled} type="carConfigDropdown">
+        <DropdownMenu type="carConfigDropdown">
           <button
             css={styles.dropdownButtonEdit}
             onClick={handleOnEditConfiguration}

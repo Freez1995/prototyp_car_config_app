@@ -41,15 +41,6 @@ export const carInfoContainer = css`
   border-left: 1px solid ${colors.borderPrimaryLight};
 `;
 
-export const dotsButton = css`
-  display: flex;
-  justify-content: flex-end;
-  border: none;
-  background-color: transparent;
-  padding: 0 6px;
-  margin: 10px 6px 0 0;
-`;
-
 export const carYearText = css`
   ${micro}
   letter-spacing: 2px;
@@ -78,7 +69,7 @@ export const carDateText = css`
   color: ${colors.textPrimary};
 `;
 
-export const dropdownButton = css`
+export const dropdownItem = css`
   ${small}
   border: none;
   background-color: transparent;
@@ -91,11 +82,12 @@ export const dropdownButton = css`
 `;
 
 export const dropdownButtonEdit = css`
-  ${dropdownButton}
+  ${dropdownItem}
   color: ${colors.globalPrimary};
+  border-bottom: 1px solid ${colors.borderPrimaryLighter};
 `;
 
 export const dropdownButtonDelete = css`
-  ${dropdownButton}
+  ${dropdownItem}
   color: ${colors.utilityErrorPrimary};
 `;

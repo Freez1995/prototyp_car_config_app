@@ -25,3 +25,72 @@ export const carConfigDropdown = css`
   right: 0px;
   top: 30px;
 `;
+
+export const dropdownHidden = css`
+  display: none;
+`;
+
+export const hamburgerButton = css`
+  width: 40px;
+  height: 40px;
+  border: none;
+  margin-left: 40px;
+  background-color: transparent;
+`;
+
+export const hamburgerTopLine = css`
+  width: 40px;
+  height: 3px;
+  background-color: ${colors.white};
+  border-radius: 3px;
+  margin-bottom: 6px;
+  transition: all 0.3s ease-in-out;
+`;
+
+export const hamburgerBottomLine = css`
+  width: 32px;
+  height: 3px;
+  border-radius: 3px;
+  background-color: ${colors.white};
+  transition: all 0.3s ease-in-out;
+`;
+
+export const hamburgerButtonClosed = css`
+  display: flex;
+  flex-direction: column;
+  &:before {
+    content: '';
+    ${hamburgerTopLine}
+  }
+  &:after {
+    content: '';
+    ${hamburgerBottomLine}
+  }
+`;
+
+export const hamburgerButtonOpened = css`
+  position: absolute;
+  &:before {
+    content: '';
+    ${hamburgerBottomLine}
+    margin: 0;
+    position: absolute;
+    transform: rotate(-45deg);
+  }
+  &:after {
+    content: '';
+    ${hamburgerBottomLine}
+    margin: 0;
+    position: absolute;
+    transform: rotate(45deg);
+  }
+`;
+
+export const dotsDropdown = css`
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 10px 6px 0 0;
+`;

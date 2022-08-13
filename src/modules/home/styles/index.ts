@@ -1,2 +1,2 @@
 export * from './HomeContent.styles';
-export * from './SavedConfiguration.styles';
+export * from './SavedConfigurationCard.styles';
