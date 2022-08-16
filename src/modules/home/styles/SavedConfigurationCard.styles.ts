@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import { micro, small, tiny } from 'shared/styles/fonts';
+import {
+  fontSizeMicro,
+  fontSizeSmall,
+  fontSizeTiny,
+} from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const cardContainer = css`
@@ -42,7 +46,7 @@ export const carInfoContainer = css`
 `;
 
 export const carYearText = css`
-  ${micro}
+  ${fontSizeMicro}
   letter-spacing: 2px;
   color: ${colors.textPrimaryDark};
 `;
@@ -57,7 +61,7 @@ export const carNameText = css`
 `;
 
 export const carColorText = css`
-  ${micro}
+  ${fontSizeMicro}
   letter-spacing: 2px;
   color: ${colors.textPrimaryDarker};
   margin-top: 8px;
@@ -65,12 +69,12 @@ export const carColorText = css`
 `;
 
 export const carDateText = css`
-  ${tiny}
+  ${fontSizeTiny}
   color: ${colors.textPrimary};
 `;
 
 export const dropdownItem = css`
-  ${small}
+  ${fontSizeSmall}
   border: none;
   background-color: transparent;
   padding: 16px 24px;

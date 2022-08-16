@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import {
-  carDescriptionBase,
-  carDescriptionLarge,
-  small,
+  fontSizeCarDescriptionBase,
+  fontSizeCarDescriptionLarge,
+  fontSizeSmall,
 } from 'shared/styles/fonts';
 import {
   boxShadow,
@@ -36,20 +36,20 @@ export const contentContainer = css`
 `;
 
 export const carYearText = css`
-  ${carDescriptionBase}
+  ${fontSizeCarDescriptionBase}
   font-family: ${fontFamily.opticianSans};
   color: ${colors.textPrimaryDark};
 `;
 
 export const carModelText = css`
-  ${carDescriptionLarge}
+  ${fontSizeCarDescriptionLarge}
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDarkest};
 `;
 
 export const cardButton = css`
-  ${small}
+  ${fontSizeSmall}
   padding: 12px 39px;
   margin-top: 16px;
   background-color: ${colors.globalPrimary};

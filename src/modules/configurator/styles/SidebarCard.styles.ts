@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base, micro } from 'shared/styles/fonts';
+import { fontSizeBase, fontSizeMicro } from 'shared/styles/fonts';
 import { colors, fontFamily } from 'shared/styles/variables';
 
 export const buttonContainer = css`
@@ -35,13 +35,13 @@ export const textContainer = css`
 `;
 
 export const itemName = css`
-  ${base}
+  ${fontSizeBase}
   color: ${colors.textPrimaryDarkest};
   margin-bottom: 4px;
 `;
 
 export const itemType = css`
-  ${micro}
+  ${fontSizeMicro}
   letter-spacing: 2px;
   color: ${colors.textPrimaryDark};
 `;

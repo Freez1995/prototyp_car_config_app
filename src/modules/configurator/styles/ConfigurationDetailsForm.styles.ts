@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import {
-  carDescriptionBase,
-  carDescriptionLarge,
-  large,
-  small,
+  fontSizeCarDescriptionBase,
+  fontSizeCarDescriptionLarge,
+  fontSizeLarge,
+  fontSizeSmall,
 } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
@@ -16,14 +16,14 @@ export const carDescriptionContainer = css`
 `;
 
 export const carName = css`
-  ${carDescriptionLarge}
+  ${fontSizeCarDescriptionLarge}
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDarkest};
 `;
 
 export const carYear = css`
-  ${carDescriptionBase}
+  ${fontSizeCarDescriptionBase}
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDark};
@@ -36,7 +36,7 @@ export const detailsContainer = css`
 `;
 
 export const detailsText = css`
-  ${large}
+  ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
   font-weight: ${fontWeight.regular};
 `;
@@ -67,14 +67,14 @@ export const detailsHeading = css`
   padding: 0 0 20px;
   border-bottom: 1px solid ${colors.borderPrimaryDark};
   h2 {
-    ${large}
+    ${fontSizeLarge}
     color: ${colors.textPrimaryDarker};
     font-weight: ${fontWeight.regular};
   }
 `;
 
 export const detailsHeadingLink = css`
-  ${small}
+  ${fontSizeSmall}
   color: ${colors.globalPrimary};
 `;
 
@@ -83,7 +83,7 @@ export const detailsHeadingLinkHidden = css`
 `;
 
 export const totalPriceContainer = css`
-  ${large}
+  ${fontSizeLarge}
   display: flex;
   justify-content: space-between;
   font-weight: ${fontWeight.bold};

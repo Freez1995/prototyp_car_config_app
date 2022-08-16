@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base } from 'shared/styles/fonts';
+import { fontSizeBase } from 'shared/styles/fonts';
 import { colors, fontWeight } from 'shared/styles/variables';
 
 export const configurationContainer = css`
@@ -37,7 +37,7 @@ export const sidebarContainer = css`
 `;
 
 export const sidebarButton = css`
-  ${base}
+  ${fontSizeBase}
   display: flex;
   align-items: center;
   justify-content: center;

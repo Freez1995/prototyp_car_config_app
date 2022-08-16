@@ -17,13 +17,14 @@ export const Footer: React.FC = () => {
     useCarConfiguration();
   const navigate = useNavigate();
 
+  function handleCarConfiguration() {
+    if (!currentDocumentId) return saveCarConfiguration();
+    updateCarConfiguration(currentDocumentId);
+    resetCurrentDocumentId();
+  }
+
   function onSaveConfiguration() {
-    if (currentDocumentId) {
-      updateCarConfiguration(currentDocumentId);
-      resetCurrentDocumentId();
-    } else {
-      saveCarConfiguration();
-    }
+    handleCarConfiguration();
     navigate('/', { replace: true });
   }
 

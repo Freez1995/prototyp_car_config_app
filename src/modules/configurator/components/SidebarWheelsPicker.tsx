@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { configuratorAtoms } from '../state';
 import { TotalPriceCard } from './TotalPriceCard';
 import { SidebarPickerCard } from './SidebarPickerCard';
+import { Wheels } from 'types';
 
 interface Props {
   isToggled: boolean;
@@ -18,26 +19,25 @@ export const SidebarWheelsPicker: React.FC<Props> = ({
   hideSidebar,
   selectedSidebarItem,
 }) => {
-  const [pickedWheelsId, setPickedWheelsId] = useState<string>('');
-  const wheels = useRecoilValue(configuratorAtoms.carWheels);
   const [selectedWheels, setSelectedWheels] = useRecoilState(
     configuratorAtoms.selectedWheels,
   );
+  const [currentWheels, setCurrentWheels] = useState<Wheels>(selectedWheels);
+  const wheels = useRecoilValue(configuratorAtoms.carWheels);
 
   useEffect(() => {
-    setPickedWheelsId(selectedWheels.wheelsId);
-  }, []);
+    setCurrentWheels(selectedWheels);
+  }, [isToggled]);
 
   function handleOnWheelsSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    setPickedWheelsId(e.currentTarget.value);
-  }
-
-  function onWheelsSave() {
     const newSelectedWheels = wheels.find(
-      (wheels) => wheels.wheelsId === pickedWheelsId,
+      (wheels) => wheels.wheelsId === e.currentTarget.value,
     );
     newSelectedWheels && setSelectedWheels(newSelectedWheels);
+  }
 
+  function handleCloseSidebar() {
+    setSelectedWheels(currentWheels);
     hideSidebar();
   }
 
@@ -53,7 +53,7 @@ export const SidebarWheelsPicker: React.FC<Props> = ({
         <div css={styles.sidebarContentContainer}>
           <div css={styles.headingContainer}>
             <p css={styles.headingText}>{selectedSidebarItem}</p>
-            <button css={styles.headingButton} onClick={hideSidebar}>
+            <button css={styles.headingButton} onClick={handleCloseSidebar}>
               <CloseIcon css={styles.headingButtonImage} />
             </button>
           </div>
@@ -68,14 +68,14 @@ export const SidebarWheelsPicker: React.FC<Props> = ({
                 itemName={wheels.wheelsModel}
                 itemPrice={wheels.wheelsPrice}
                 handleOnItemSelect={handleOnWheelsSelect}
-                isChecked={pickedWheelsId === wheels.wheelsId}
+                isChecked={selectedWheels.wheelsId === wheels.wheelsId}
               />
             ))}
           </div>
         </div>
         <TotalPriceCard direction="row" />
       </div>
-      <button css={styles.doneButton} onClick={onWheelsSave}>
+      <button css={styles.doneButton} onClick={hideSidebar}>
         Done
       </button>
     </div>

@@ -1,62 +1,62 @@
 import { css } from '@emotion/react';
 
-export const micro = css`
+export const fontSizeMicro = css`
   font-size: 11px;
   line-height: 16px;
 `;
 
-export const tiny = css`
+export const fontSizeTiny = css`
   font-size: 12px;
   line-height: 16px;
 `;
 
-export const small = css`
+export const fontSizeSmall = css`
   font-size: 14px;
   line-height: 20px;
 `;
 
-export const base = css`
+export const fontSizeBase = css`
   font-size: 16px;
   line-height: 24px;
 `;
 
-export const medium = css`
+export const fontSizeMedium = css`
   font-size: 20px;
   line-height: 28px;
 `;
 
-export const large = css`
+export const fontSizeLarge = css`
   font-size: 24px;
   line-height: 32px;
 `;
 
-export const xLarge = css`
+export const fontSizeXLarge = css`
   font-size: 32px;
   line-height: 40px;
 `;
 
-export const xxLarge = css`
+export const fontSizeXXLarge = css`
   font-size: 40px;
   line-height: 48px;
 `;
 
-export const xxxLarge = css`
+export const fontSizeXXXLarge = css`
   font-size: 48px;
   line-height: 56px;
 `;
 
-export const huge = css`
+export const fontSizeHuge = css`
   font-size: 60px;
   line-height: 72px;
 `;
 
-export const carDescriptionBase = css`
+export const fontSizeCarDescriptionBase = css`
   font-size: 28px;
   line-height: 32px;
   letter-spacing: -2px;
 `;
 
-export const carDescriptionLarge = css`
+export const fontSizeCarDescriptionLarge = css`
   font-size: 48px;
   line-height: 44px;
   letter-spacing: -2px;

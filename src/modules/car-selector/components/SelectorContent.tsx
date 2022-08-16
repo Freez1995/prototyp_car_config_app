@@ -6,10 +6,11 @@ import { CarouselCard } from './CarouselCard';
 import { useCars } from 'modules/firebase';
 
 export const SelectorContent: React.FC = () => {
-  const { cars, isLoaded, getAllCars } = useCars();
+  const { cars, isLoaded, getAllCars, resetRecoilState } = useCars();
 
   useEffect(() => {
     getAllCars();
+    resetRecoilState();
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base, small } from 'shared/styles/fonts';
+import { fontSizeBase, fontSizeSmall } from 'shared/styles/fonts';
 import { colors, fontFamily } from 'shared/styles/variables';
 
 export const inputRadioButton = css`
@@ -50,12 +50,12 @@ export const radioTextContainer = css`
 `;
 
 export const radioItemName = css`
-  ${base}
+  ${fontSizeBase}
   color: ${colors.textPrimaryDarkest};
   margin-bottom: 4px;
 `;
 
 export const radioItemPrice = css`
-  ${small}
+  ${fontSizeSmall}
   color: ${colors.textPrimaryDark};
 `;

@@ -12,7 +12,9 @@ export const Header: React.FC = () => {
 
   return (
     <header css={styles.header}>
-      <img src={logo} />
+      <Link to="/">
+        <img src={logo} />
+      </Link>
       <nav css={styles.navbar}>
         <Link
           css={

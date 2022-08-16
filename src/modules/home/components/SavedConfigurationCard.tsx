@@ -29,9 +29,8 @@ export const SavedConfigurationCard: React.FC<Props> = ({
   }
 
   function handleDeleteConfiguration() {
-    if (documentId) {
-      deleteCarConfiguration(documentId);
-    }
+    if (!documentId) return;
+    deleteCarConfiguration(documentId);
   }
 
   function dateOrdinal() {
@@ -40,14 +39,17 @@ export const SavedConfigurationCard: React.FC<Props> = ({
     const year = date.getFullYear();
     const month = date.toLocaleString('en-US', { month: 'long' });
     let ordinal = '';
-    if (day > 3 && day < 21) ordinal = 'th';
+    if (day > 10 && day < 14) return `${month} ${day}th ${year}`;
     switch (day % 10) {
       case 1:
         ordinal = 'st';
+        break;
       case 2:
         ordinal = 'nd';
+        break;
       case 3:
         ordinal = 'rd';
+        break;
       default:
         ordinal = 'th';
     }

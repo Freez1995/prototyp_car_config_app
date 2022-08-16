@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { configuratorAtoms } from '../state';
 import { TotalPriceCard } from './TotalPriceCard';
 import { SidebarPickerCard } from './SidebarPickerCard';
+import { Color } from 'types';
 
 interface Props {
   isToggled: boolean;
@@ -18,26 +19,25 @@ export const SidebarColorPicker: React.FC<Props> = ({
   hideSidebar,
   selectedSidebarItem,
 }) => {
-  const [pickedColorId, setPickedColorId] = useState<string>('');
-  const colors = useRecoilValue(configuratorAtoms.carColors);
   const [selectedColor, setSelectedColor] = useRecoilState(
     configuratorAtoms.selectedColor,
   );
+  const [currentColor, setCurrentColor] = useState<Color>(selectedColor);
+  const colors = useRecoilValue(configuratorAtoms.carColors);
 
   useEffect(() => {
-    setPickedColorId(selectedColor.colorId);
-  }, []);
+    setCurrentColor(selectedColor);
+  }, [isToggled]);
 
   function handleOnColorSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    setPickedColorId(e.currentTarget.value);
-  }
-
-  function onColorSave() {
     const newSelectedColor = colors.find(
-      (color) => color.colorId === pickedColorId,
+      (color) => color.colorId === e.currentTarget.value,
     );
     newSelectedColor && setSelectedColor(newSelectedColor);
+  }
 
+  function handleCloseSidebar() {
+    setSelectedColor(currentColor);
     hideSidebar();
   }
 
@@ -53,7 +53,7 @@ export const SidebarColorPicker: React.FC<Props> = ({
         <div css={styles.sidebarContentContainer}>
           <div css={styles.headingContainer}>
             <p css={styles.headingText}>{selectedSidebarItem}</p>
-            <button css={styles.headingButton} onClick={hideSidebar}>
+            <button css={styles.headingButton} onClick={handleCloseSidebar}>
               <CloseIcon css={styles.headingButtonImage} />
             </button>
           </div>
@@ -68,14 +68,14 @@ export const SidebarColorPicker: React.FC<Props> = ({
                 itemName={color.colorName}
                 itemPrice={color.colorPrice}
                 handleOnItemSelect={handleOnColorSelect}
-                isChecked={pickedColorId === color.colorId}
+                isChecked={selectedColor.colorId === color.colorId}
               />
             ))}
           </div>
         </div>
         <TotalPriceCard direction="row" />
       </div>
-      <button css={styles.doneButton} onClick={onColorSave}>
+      <button css={styles.doneButton} onClick={hideSidebar}>
         Done
       </button>
     </div>

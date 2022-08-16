@@ -1,16 +1,14 @@
 import { css } from '@emotion/react';
-import { medium } from 'shared/styles/fonts';
+import { fontSizeMedium } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const carouselExteriorContainer = css`
   position: relative;
-  max-width: 100%;
   min-height: 340px;
 `;
 
 export const carouselInteriorContainer = css`
   position: relative;
-  max-width: 100%;
   height: 440px;
   margin: 0 32px 0 40px;
 `;
@@ -44,7 +42,7 @@ export const carouselInteriorImage = css`
 `;
 
 export const carouselNavigation = css`
-  ${medium}
+  ${fontSizeMedium}
   display: flex;
   justify-content: center;
   margin: 40px auto 0;

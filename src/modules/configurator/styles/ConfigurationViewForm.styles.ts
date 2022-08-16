@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base } from 'shared/styles/fonts';
+import { fontSizeBase } from 'shared/styles/fonts';
 import { colors, fontFamily } from 'shared/styles/variables';
 
 export const contentWrapper = css`
@@ -7,17 +7,14 @@ export const contentWrapper = css`
 `;
 
 export const editConfiguration = css`
-  ${base}
+  ${fontSizeBase}
   font-family: ${fontFamily.inter};
   color: ${colors.globalPrimary};
   margin-right: 40px;
 `;
 
 export const deleteConfiguration = css`
-  ${base}
+  ${fontSizeBase}
   font-family: ${fontFamily.inter};
   color: ${colors.utilityErrorPrimary};
-  background-color: transparent;
-  border: none;
-  outline: none;
 `;

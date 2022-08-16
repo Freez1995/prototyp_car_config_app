@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base, large } from 'shared/styles/fonts';
+import { fontSizeBase, fontSizeLarge } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const selectorSidebar = css`
@@ -44,7 +44,7 @@ export const headingContainer = css`
 `;
 
 export const headingText = css`
-  ${large}
+  ${fontSizeLarge}
   font-family: ${fontFamily.inter};
   color: ${colors.textPrimaryDarkest};
   &::first-letter {
@@ -75,7 +75,7 @@ export const selectorSidebarCard = css`
 `;
 
 export const doneButton = css`
-  ${base}
+  ${fontSizeBase}
   min-width: max-content;
   background-color: ${colors.globalPrimary};
   padding: 22px 0;

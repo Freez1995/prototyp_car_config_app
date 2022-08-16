@@ -35,8 +35,8 @@ export const selectedExterior = selector<string[]>({
         exterior.wheelsId === selectedWheels.wheelsId,
     );
 
-    if (exterior) return exterior.imgUrl;
-    return [];
+    if (!exterior) return [];
+    return exterior.imgUrl;
   },
 });
 

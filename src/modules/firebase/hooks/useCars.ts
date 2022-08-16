@@ -4,10 +4,16 @@ import { db } from 'firebaseConfig';
 import { isCarType, isFirestoreError } from '../typeguards';
 import { toast } from 'react-toastify';
 import { Car } from 'types';
+import { useResetRecoilState } from 'recoil';
+import { configuratorAtoms } from 'modules/configurator';
 
 export function useCars() {
   const [cars, setCars] = useState<Car[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const resetCarExterior = useResetRecoilState(configuratorAtoms.carExterior);
+  const resetCarColor = useResetRecoilState(configuratorAtoms.carColors);
+  const resetCarWheels = useResetRecoilState(configuratorAtoms.carWheels);
+  const resetCarInterior = useResetRecoilState(configuratorAtoms.carInteriors);
   const carsCollection = collection(db, 'cars');
 
   function getAllCars() {
@@ -36,9 +42,17 @@ export function useCars() {
       });
   }
 
+  function resetRecoilState() {
+    resetCarExterior();
+    resetCarColor();
+    resetCarWheels();
+    resetCarInterior();
+  }
+
   return {
     cars,
     isLoaded,
     getAllCars,
+    resetRecoilState,
   };
 }

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as styles from '../styles/DropdownMenu.styles';
 import dots from 'assets/home/dots.svg';
 
@@ -16,16 +16,24 @@ export const DropdownMenu: React.FC<Props> = ({ type, children, ...rest }) => {
     setIsToggled(!isToggled);
   }
 
-  const handleClickOutside = (e: MouseEvent) => {
+  function handleClickOutside(e: MouseEvent) {
     if (
       e.target instanceof Element &&
       isToggled &&
       !dropdownRef.current?.contains(e.target)
-    )
+    ) {
       setIsToggled(false);
-  };
+    }
+  }
 
-  window.addEventListener('click', handleClickOutside, { passive: false });
+  function windowListener() {
+    if (typeof window === 'undefined') return;
+    window.addEventListener('click', handleClickOutside, { passive: false });
+  }
+
+  useEffect(() => {
+    windowListener();
+  }, [handleClickOutside]);
 
   return (
     <div

@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base, carDescriptionBase } from 'shared/styles/fonts';
+import { fontSizeBase, fontSizeCarDescriptionBase } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const footer = css`
@@ -12,7 +12,7 @@ export const footer = css`
 `;
 
 export const footerCarDetails = css`
-  ${carDescriptionBase}
+  ${fontSizeCarDescriptionBase}
   display: flex;
   align-items: center;
   margin-left: 40px;
@@ -34,7 +34,7 @@ export const saveConfigContainer = css`
 `;
 
 export const footerButton = css`
-  ${base}
+  ${fontSizeBase}
   padding: 28px 74px 28px 95px;
   margin-left: 32px;
   background-color: ${colors.globalPrimary};

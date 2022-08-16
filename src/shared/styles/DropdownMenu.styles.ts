@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import { small } from './fonts';
+import { fontSizeSmall } from './fonts';
 import { boxShadow, colors } from './variables';
 
 export const dropdownContainer = css`
-  ${small}
+  ${fontSizeSmall}
   position: absolute;
   z-index: 3;
   display: flex;

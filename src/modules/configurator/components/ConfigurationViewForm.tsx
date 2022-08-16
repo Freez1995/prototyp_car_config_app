@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 import * as styles from '../styles/ConfigurationViewForm.styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Carousel } from 'shared/components';
 import { CarouselImageSlider } from './CarouselImageSlider';
@@ -19,22 +19,18 @@ export const ConfigurationViewForm: React.FC = () => {
   const setSelectedInterior = useSetRecoilState(
     configuratorAtoms.selectedInterior,
   );
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isStateSet) {
-      setSelectedColor(initialColor);
-      setSelectedWheels(initialWheels);
-      setSelectedInterior(initialInterior);
-      setIsLoaded(true);
-    }
+    if (!isStateSet) return;
+    setSelectedColor(initialColor);
+    setSelectedWheels(initialWheels);
+    setSelectedInterior(initialInterior);
+    setIsLoaded(true);
   }, [initialColor, initialWheels, initialInterior]);
 
-  function handleOnDelete() {
-    navigate('/select-car', { replace: true });
-  }
+  if (!isLoaded) return null;
 
-  return isLoaded ? (
+  return (
     <div>
       <Navbar>
         <Link
@@ -44,9 +40,9 @@ export const ConfigurationViewForm: React.FC = () => {
         >
           Edit configuration
         </Link>
-        <button css={styles.deleteConfiguration} onClick={handleOnDelete}>
+        <Link css={styles.deleteConfiguration} to="/select-car">
           Delete
-        </button>
+        </Link>
       </Navbar>
       <section css={styles.contentWrapper}>
         <Carousel type="carDetailsCarousel">
@@ -55,5 +51,5 @@ export const ConfigurationViewForm: React.FC = () => {
         <ConfigurationDetailsForm type="configurationView" />
       </section>
     </div>
-  ) : null;
+  );
 };

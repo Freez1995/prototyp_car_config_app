@@ -33,6 +33,7 @@ export const SidebarPickerCard: React.FC<Props> = ({
         id={radioButtonId}
         value={radioButtonValue}
         onChange={handleOnItemSelect}
+        checked={isChecked}
       />
       <label css={styles.radioButtonContainer} htmlFor={radioButtonId}>
         <div css={styles.radioImageContainer}>

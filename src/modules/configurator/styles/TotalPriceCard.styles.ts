@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { large, small } from 'shared/styles/fonts';
+import { fontSizeLarge, fontSizeSmall } from 'shared/styles/fonts';
 import { colors, fontWeight } from 'shared/styles/variables';
 
 export const containerColumn = css`
@@ -25,7 +25,7 @@ export const priceFigure = css`
 `;
 
 export const priceFigureText = css`
-  ${small}
+  ${fontSizeSmall}
   margin-right: 8px;
   letter-spacing: 2px;
   color: ${colors.textPrimary};
@@ -33,6 +33,6 @@ export const priceFigureText = css`
 `;
 
 export const priceText = css`
-  ${large}
+  ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
 `;

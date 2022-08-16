@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { small, tiny } from './fonts';
+import { fontSizeSmall, fontSizeTiny } from './fonts';
 import { boxShadow, colors, fontFamily, fontWeight } from './variables';
 
 export const header = css`
@@ -19,7 +19,7 @@ export const navbar = css`
 `;
 
 export const configureCarLink = css`
-  ${tiny}
+  ${fontSizeTiny}
   font-weight: ${fontWeight.bold};
   font-family: ${fontFamily.inter};
   border: 1px solid ${colors.borderPrimaryDarker};
@@ -38,7 +38,7 @@ export const configureCarLinkHidden = css`
 `;
 
 export const dropdownItem = css`
-  ${small}
+  ${fontSizeSmall}
   font-family: ${fontFamily.inter};
   font-weight: ${fontWeight.regular};
   color: ${colors.globalPrimary};

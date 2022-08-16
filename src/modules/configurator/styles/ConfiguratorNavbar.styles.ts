@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { base } from 'shared/styles/fonts';
+import { fontSizeBase } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const linkContainer = css`
@@ -14,7 +14,7 @@ export const linkContainerHidden = css`
 `;
 
 export const linkNumber = css`
-  ${base}
+  ${fontSizeBase}
   font-family: ${fontFamily.inter};
   color: ${colors.textPrimary};
 `;

@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { configuratorAtoms } from '../state';
 import { TotalPriceCard } from './TotalPriceCard';
 import { SidebarPickerCard } from './SidebarPickerCard';
+import { Interior } from 'types';
 
 interface Props {
   isToggled: boolean;
@@ -18,26 +19,26 @@ export const SidebarInteriorPicker: React.FC<Props> = ({
   hideSidebar,
   selectedSidebarItem,
 }) => {
-  const [pickedInteriorId, setPickedInteriorId] = useState<string>('');
-  const interiors = useRecoilValue(configuratorAtoms.carInteriors);
-  const [selectedInteriors, setSelectedInterior] = useRecoilState(
+  const [selectedInterior, setSelectedInterior] = useRecoilState(
     configuratorAtoms.selectedInterior,
   );
+  const [currentInterior, setCurrentInterior] =
+    useState<Interior>(selectedInterior);
+  const interiors = useRecoilValue(configuratorAtoms.carInteriors);
 
   useEffect(() => {
-    setPickedInteriorId(selectedInteriors.interiorId);
-  }, []);
+    setCurrentInterior(selectedInterior);
+  }, [isToggled]);
 
   function handleOnInteriorSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    setPickedInteriorId(e.currentTarget.value);
-  }
-
-  function onInteriorSave() {
     const newSelectedInterior = interiors.find(
-      (interior) => interior.interiorId === pickedInteriorId,
+      (interior) => interior.interiorId === e.currentTarget.value,
     );
     newSelectedInterior && setSelectedInterior(newSelectedInterior);
+  }
 
+  function handleCloseSidebar() {
+    setSelectedInterior(currentInterior);
     hideSidebar();
   }
 
@@ -53,7 +54,7 @@ export const SidebarInteriorPicker: React.FC<Props> = ({
         <div css={styles.sidebarContentContainer}>
           <div css={styles.headingContainer}>
             <p css={styles.headingText}>{selectedSidebarItem}</p>
-            <button css={styles.headingButton} onClick={hideSidebar}>
+            <button css={styles.headingButton} onClick={handleCloseSidebar}>
               <CloseIcon css={styles.headingButtonImage} />
             </button>
           </div>
@@ -68,14 +69,14 @@ export const SidebarInteriorPicker: React.FC<Props> = ({
                 itemName={interior.interiorName}
                 itemPrice={interior.interiorPrice}
                 handleOnItemSelect={handleOnInteriorSelect}
-                isChecked={pickedInteriorId === interior.interiorId}
+                isChecked={selectedInterior.interiorId === interior.interiorId}
               />
             ))}
           </div>
         </div>
         <TotalPriceCard direction="row" />
       </div>
-      <button css={styles.doneButton} onClick={onInteriorSave}>
+      <button css={styles.doneButton} onClick={hideSidebar}>
         Done
       </button>
     </div>

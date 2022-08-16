@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { medium, xxLarge } from 'shared/styles/fonts';
+import { fontSizeMedium, fontSizeXXLarge } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const summaryWrapper = css`
@@ -15,12 +15,12 @@ export const summaryHeadingContainer = css`
 `;
 
 export const summaryHeadingText = css`
-  ${xxLarge}
+  ${fontSizeXXLarge}
   font-family: Aeonik;
   font-weight: ${fontWeight.bold};
 `;
 
 export const summarySubheadingText = css`
-  ${medium}
+  ${fontSizeMedium}
   font-family: ${fontFamily.inter};
 `;

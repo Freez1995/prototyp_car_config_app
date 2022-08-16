@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import { medium } from 'shared/styles/fonts';
+import { fontSizeMedium } from 'shared/styles/fonts';
 import { colors, fontWeight } from 'shared/styles/variables';
 
 export const detailsCard = css`
-  ${medium}
+  ${fontSizeMedium}
   display: flex;
   justify-content: space-between;
   font-weight: ${fontWeight.regular};
