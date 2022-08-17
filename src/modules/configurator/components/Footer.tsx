@@ -18,7 +18,10 @@ export const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   function handleCarConfiguration() {
-    if (!currentDocumentId) return saveCarConfiguration();
+    if (!currentDocumentId) {
+      saveCarConfiguration();
+      return;
+    }
     updateCarConfiguration(currentDocumentId);
     resetCurrentDocumentId();
   }

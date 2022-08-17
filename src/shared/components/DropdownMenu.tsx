@@ -26,13 +26,11 @@ export const DropdownMenu: React.FC<Props> = ({ type, children, ...rest }) => {
     }
   }
 
-  function windowListener() {
-    if (typeof window === 'undefined') return;
-    window.addEventListener('click', handleClickOutside, { passive: false });
-  }
-
   useEffect(() => {
-    windowListener();
+    window.addEventListener('click', handleClickOutside, { passive: false });
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
   }, [handleClickOutside]);
 
   return (
