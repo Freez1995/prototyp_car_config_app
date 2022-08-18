@@ -4,6 +4,7 @@ import { colors } from 'shared/styles/variables';
 export const global = css`
   @import url(https://fonts.googleapis.com/css?family=Inter:regular,bold,italic&subset=latin,latin-ext);
   @import url(http://fonts.cdnfonts.com/css/optician-sans);
+  @import url(//db.onlinewebfonts.com/c/8f2a9d487bbbc60974cd132fc3a63862?family=Aeonik);
 
   * {
     box-sizing: border-box;

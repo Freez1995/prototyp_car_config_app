@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { small, tiny } from './fonts';
+import { fontSizeSmall, fontSizeTiny } from './fonts';
 import { boxShadow, colors, fontFamily, fontWeight } from './variables';
 
 export const header = css`
@@ -19,7 +19,7 @@ export const navbar = css`
 `;
 
 export const configureCarLink = css`
-  ${tiny}
+  ${fontSizeTiny}
   font-weight: ${fontWeight.bold};
   font-family: ${fontFamily.inter};
   border: 1px solid ${colors.borderPrimaryDarker};
@@ -33,86 +33,30 @@ export const configureCarLink = css`
   }
 `;
 
-export const hamburgerButton = css`
-  width: 40px;
-  height: 40px;
-  border: none;
-  margin-left: 40px;
-  background-color: transparent;
+export const configureCarLinkHidden = css`
+  display: none;
 `;
 
-export const hamburgerTopLine = css`
-  width: 40px;
-  height: 3px;
-  background-color: ${colors.white};
-  border-radius: 3px;
-  margin-bottom: 6px;
-  transition: all 0.3s ease-in-out;
-`;
-
-export const hamburgerBottomLine = css`
-  width: 32px;
-  height: 3px;
-  border-radius: 3px;
-  background-color: ${colors.white};
-  transition: all 0.3s ease-in-out;
-`;
-
-export const hamburgerButtonClosed = css`
-  display: flex;
-  flex-direction: column;
-  &:before {
-    content: '';
-    ${hamburgerTopLine}
-  }
-  &:after {
-    content: '';
-    ${hamburgerBottomLine}
-  }
-`;
-
-export const hamburgerButtonOpened = css`
-  position: absolute;
-  &:before {
-    content: '';
-    ${hamburgerBottomLine}
-    margin: 0;
-    position: absolute;
-    transform: rotate(-45deg);
-  }
-  &:after {
-    content: '';
-    ${hamburgerBottomLine}
-    margin: 0;
-    position: absolute;
-    transform: rotate(45deg);
+export const dropdownItem = css`
+  ${fontSizeSmall}
+  font-family: ${fontFamily.inter};
+  font-weight: ${fontWeight.regular};
+  color: ${colors.globalPrimary};
+  padding: 16px 25px;
+  &:hover {
+    background-color: ${colors.globalPrimaryLight};
+    color: ${colors.white};
   }
 `;
 
 export const dropdownItemLink = css`
-  ${small}
-  font-family: ${fontFamily.inter};
-  font-weight: ${fontWeight.regular};
-  color: ${colors.globalPrimary};
-  padding: 16px 25px;
+  ${dropdownItem}
   border-bottom: 1px solid ${colors.borderPrimaryLighter};
-  &:hover {
-    background-color: ${colors.globalPrimaryLight};
-    color: ${colors.white};
-  }
 `;
 
 export const dropdownItemButton = css`
-  ${small}
-  font-family: ${fontFamily.inter};
-  font-weight: ${fontWeight.regular};
-  color: ${colors.globalPrimary};
+  ${dropdownItem}
   background-color: transparent;
-  padding: 16px 25px;
   border: none;
   text-align: start;
-  &:hover {
-    background-color: ${colors.globalPrimaryLight};
-    color: ${colors.white};
-  }
 `;

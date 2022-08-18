@@ -2,19 +2,20 @@
 import React, { useEffect } from 'react';
 import * as styles from '../styles/HomeContent.styles';
 import { Link } from 'react-router-dom';
-import emptyStateCar from 'assets/home/emptyStateCar.png';
-import { useFirestoreSavedCars } from 'modules/firebase';
+import emptyStateCar from 'assets/home/emptyStateCar.svg';
+import { SavedConfigurationCard } from './SavedConfigurationCard';
+import { useCarConfiguration } from 'modules/firebase';
+import { useHomeContent } from '../hooks';
 
 export const HomeContent: React.FC = () => {
-  const { configurationExist, getSavedCars } = useFirestoreSavedCars();
+  const { savedConfigurations, getSavedConfigurations } = useCarConfiguration();
+  const { handleUpdateConfiguration } = useHomeContent();
 
   useEffect(() => {
-    getSavedCars();
+    getSavedConfigurations();
   }, []);
 
-  return configurationExist ? (
-    <div>Here are your configs</div>
-  ) : (
+  return (
     <article css={styles.contentWrapper}>
       <section css={styles.headingContainer}>
         <h1 css={styles.headingText}>View saved configurations</h1>
@@ -22,17 +23,29 @@ export const HomeContent: React.FC = () => {
           Configure a car
         </Link>
       </section>
-      <section css={styles.emptyStateContainer}>
-        <img src={emptyStateCar} />
-        <p css={styles.text}>
-          You haven't configured any cars yet. You may
-          <br /> choose to
-          <Link css={styles.textLink} to="/select-car">
-            {' '}
-            configure some now.
-          </Link>
-        </p>
-      </section>
+      {savedConfigurations.length ? (
+        <div css={styles.savedConfigurationCards}>
+          {savedConfigurations.map((configuration) => (
+            <SavedConfigurationCard
+              key={configuration.documentId}
+              data={configuration}
+              updateConfiguration={handleUpdateConfiguration}
+            />
+          ))}
+        </div>
+      ) : (
+        <section css={styles.emptyStateContainer}>
+          <img src={emptyStateCar} />
+          <p css={styles.text}>
+            You haven't configured any cars yet. You may
+            <br /> choose to
+            <Link css={styles.textLink} to="/select-car">
+              {' '}
+              configure some now.
+            </Link>
+          </p>
+        </section>
+      )}
     </article>
   );
 };

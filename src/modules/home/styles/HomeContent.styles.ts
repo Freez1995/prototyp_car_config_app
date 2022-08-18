@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import { large, medium, small } from 'shared/styles/fonts';
+import {
+  fontSizeLarge,
+  fontSizeMedium,
+  fontSizeSmall,
+} from 'shared/styles/fonts';
 import {
   boxShadow,
   colors,
@@ -20,13 +24,13 @@ export const headingContainer = css`
 `;
 
 export const headingText = css`
-  ${large}
+  ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
   font-weight: ${fontWeight.regular};
 `;
 
 export const headingLink = css`
-  ${small}
+  ${fontSizeSmall}
   padding: 12px 20px;
   background-color: ${colors.globalPrimary};
   color: ${colors.textPrimaryLighter};
@@ -41,7 +45,7 @@ export const headingLink = css`
 `;
 
 export const emptyStateContainer = css`
-  ${medium}
+  ${fontSizeMedium}
   margin-top: 172px;
   display: flex;
   flex-direction: column;
@@ -63,5 +67,15 @@ export const textLink = css`
   font-weight: ${fontWeight.bold};
   &:hover {
     color: ${colors.globalPrimaryLighter};
+  }
+`;
+
+export const savedConfigurationCards = css`
+  & > :first-of-type {
+    margin-top: 48px;
+    margin-bottom: 28px;
+  }
+  & > :nth-of-type(n + 2) {
+    margin-bottom: 28px;
   }
 `;

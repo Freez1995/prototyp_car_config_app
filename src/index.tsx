@@ -18,7 +18,7 @@ root.render(
       <Router>
         <Global styles={global} />
         <App />
-        <ToastContainer />
+        <ToastContainer position="bottom-left" />
       </Router>
     </RecoilRoot>
   </React.StrictMode>,

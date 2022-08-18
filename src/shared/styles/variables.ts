@@ -32,6 +32,15 @@ export const colors = {
   backgroundPrimaryDarkest: 'hsl(240, 10%, 20%)',
   backgroundFormError: 'hsl(0, 80%, 96%)',
 
+  iconPrimary: 'hsl(240, 10%, 65%)',
+  iconPrimaryLight: '	hsl(240, 10%, 80%)',
+  iconPrimaryLighter: 'hsl(240, 12%, 95%)',
+  iconPrimaryLightest: 'hsl(240, 20%, 99%)',
+  iconPrimaryDark: 'hsl(240, 10%, 50%)',
+  iconPrimaryDarker: 'hsl(240, 10%, 35%)',
+  iconPrimaryDarkest: 'hsl(240, 10%, 20%)',
+  iconFormError: 'hsl(0, 80%, 96%)',
+
   utilitySuccessPrimary: 'hsl(155, 75%, 47%)',
   utilitySuccessLight: 'hsl(155, 75%, 67%)',
   utilitySuccessLighter: 'hsl(155, 76%, 87%)',

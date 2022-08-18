@@ -7,3 +7,9 @@ export const carousel = css`
 export const dragFreeCarousel = css`
   display: flex;
 `;
+
+export const carDetailsCarousel = css`
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+`;

@@ -1,6 +1,15 @@
 import { css } from '@emotion/react';
-import { carModelFont, carYearFont, small } from 'shared/styles/fonts';
-import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
+import {
+  fontSizeCarDescriptionBase,
+  fontSizeCarDescriptionLarge,
+  fontSizeSmall,
+} from 'shared/styles/fonts';
+import {
+  boxShadow,
+  colors,
+  fontFamily,
+  fontWeight,
+} from 'shared/styles/variables';
 
 export const card = css`
   display: flex;
@@ -10,6 +19,10 @@ export const card = css`
   min-width: 548px;
   min-height: 600px;
   background-color: ${colors.backgroundPrimaryLightest};
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -23,24 +36,31 @@ export const contentContainer = css`
 `;
 
 export const carYearText = css`
-  ${carYearFont}
+  ${fontSizeCarDescriptionBase}
   font-family: ${fontFamily.opticianSans};
   color: ${colors.textPrimaryDark};
 `;
 
 export const carModelText = css`
-  ${carModelFont}
+  ${fontSizeCarDescriptionLarge}
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDarkest};
 `;
 
 export const cardButton = css`
-  ${small}
+  ${fontSizeSmall}
   padding: 12px 39px;
   margin-top: 16px;
   background-color: ${colors.globalPrimary};
   color: ${colors.textPrimaryLighter};
   font-weight: ${fontWeight.bold};
   border: none;
+  &:hover {
+    background-color: ${colors.globalPrimaryLight};
+  }
+  &:active {
+    background-color: ${colors.globalPrimary};
+    box-shadow: ${boxShadow.shadowItemClicked};
+  }
 `;

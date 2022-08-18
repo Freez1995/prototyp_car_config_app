@@ -1,5 +1,5 @@
 import { DocumentData } from 'firebase/firestore';
-import { Car } from '../models';
+import { Car } from 'types';
 
 export function isCarType(data: DocumentData): data is Car {
   return (

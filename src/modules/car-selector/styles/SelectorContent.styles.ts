@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { large, small } from 'shared/styles/fonts';
+import { fontSizeLarge, fontSizeSmall } from 'shared/styles/fonts';
 import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
 
 export const contentWrapper = css`
@@ -11,13 +11,13 @@ export const textSection = css`
 `;
 
 export const headingText = css`
-  ${large}
+  ${fontSizeLarge}
   font-family: ${fontFamily.inter};
   color: ${colors.textPrimaryDarkest};
   font-weight: ${fontWeight.regular};
   margin: 0 0 16px;
 `;
 export const subheadingText = css`
-  ${small}
+  ${fontSizeSmall}
   color: ${colors.textPrimaryDark}
 `;

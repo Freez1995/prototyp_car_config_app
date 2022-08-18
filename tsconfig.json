@@ -20,7 +20,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "typeRoots": ["node_modules/@types", "src/shared/types"],
+    "typeRoots": ["node_modules/@types", "types"],
     "tsBuildInfoFile": ".tsbuildinfo",
     "incremental": true,
     "allowSyntheticDefaultImports": true
