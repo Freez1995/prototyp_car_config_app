@@ -30,6 +30,7 @@ export function useFirebaseAuth() {
   const setUserAuthState = useSetRecoilState(authAtoms.userAuthState);
   const resetUserAuthState = useResetRecoilState(authAtoms.userAuthState);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUserLoading, setIsUserLoading] = useState(true);
 
   function handleSetPersistence(isSessionPersistenceEnabled: boolean) {
     !isSessionPersistenceEnabled &&
@@ -121,6 +122,7 @@ export function useFirebaseAuth() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       currentUser ? setUserAuthState(currentUser.uid) : resetUserAuthState();
+      setIsUserLoading(false);
     });
     return () => {
       unsubscribe();
@@ -129,6 +131,7 @@ export function useFirebaseAuth() {
 
   return {
     isLoading,
+    isUserLoading,
     handleSignIn,
     handleSignUp,
     handleSignOut,
