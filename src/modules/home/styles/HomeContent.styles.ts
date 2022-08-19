@@ -2,10 +2,12 @@ import { css } from '@emotion/react';
 import {
   fontSizeLarge,
   fontSizeMedium,
+  fontSizeMicro,
   fontSizeSmall,
 } from 'shared/styles/fonts';
 import {
   boxShadow,
+  breakpoints,
   colors,
   fontFamily,
   fontWeight,
@@ -13,6 +15,9 @@ import {
 
 export const contentWrapper = css`
   padding: 0 156px;
+  @media ${breakpoints.small} {
+    padding: 0 20px;
+  }
 `;
 
 export const headingContainer = css`
@@ -21,12 +26,19 @@ export const headingContainer = css`
   align-items: center;
   margin-top: 76px;
   font-family: ${fontFamily.inter};
+  @media ${breakpoints.small} {
+    margin-top: 50px;
+  }
 `;
 
 export const headingText = css`
   ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
   font-weight: ${fontWeight.regular};
+  @media ${breakpoints.small} {
+    ${fontSizeMedium};
+    width: min-content;
+  }
 `;
 
 export const headingLink = css`
@@ -42,6 +54,10 @@ export const headingLink = css`
     background-color: ${colors.globalPrimary};
     box-shadow: ${boxShadow.shadowItemClicked};
   }
+  @media ${breakpoints.small} {
+    ${fontSizeMicro};
+    padding: 12px 20px;
+  }
 `;
 
 export const emptyStateContainer = css`
@@ -54,6 +70,11 @@ export const emptyStateContainer = css`
   img {
     opacity: 0.1;
     margin-bottom: 24px;
+  }
+  @media ${breakpoints.small} {
+    ${fontSizeSmall};
+    overflow: hidden;
+    margin-top: 90px;
   }
 `;
 

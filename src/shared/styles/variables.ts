@@ -73,3 +73,11 @@ export const fontWeight = {
   regular: 400,
   bold: 700,
 };
+
+export const breakpoints = {
+  small: 'screen and (max-width: 767px)',
+  medium: 'screen and (min-width: 768px)',
+  large: 'screen and (min-width: 1280px)',
+  xLarge: 'screen and (min-width: 1480px)',
+  xxLarge: 'screen and (min-width: 1600px)',
+};

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { fontSizeSmall } from './fonts';
-import { boxShadow, colors } from './variables';
+import { boxShadow, breakpoints, colors } from './variables';
 
 export const dropdownContainer = css`
   ${fontSizeSmall}
@@ -17,6 +17,9 @@ export const headerDropdown = css`
   ${dropdownContainer}
   right: -40px;
   top: 60px;
+  @media ${breakpoints.small} {
+    right: -10px;
+  }
 `;
 
 export const carConfigDropdown = css`
@@ -49,6 +52,9 @@ export const hamburgerDropdown = css`
   border: none;
   margin-left: 40px;
   background-color: transparent;
+  @media ${breakpoints.small} {
+    margin-left: 20px;
+  }
 `;
 
 export const hamburgerTopLine = css`
