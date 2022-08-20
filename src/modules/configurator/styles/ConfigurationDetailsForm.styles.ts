@@ -2,10 +2,17 @@ import { css } from '@emotion/react';
 import {
   fontSizeCarDescriptionBase,
   fontSizeCarDescriptionLarge,
+  fontSizeCarDescriptionSmall,
   fontSizeLarge,
+  fontSizeMedium,
   fontSizeSmall,
 } from 'shared/styles/fonts';
-import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
+import {
+  breakpoints,
+  colors,
+  fontFamily,
+  fontWeight,
+} from 'shared/styles/variables';
 
 export const carDescriptionContainer = css`
   display: flex;
@@ -13,6 +20,10 @@ export const carDescriptionContainer = css`
   border-bottom: 1px solid ${colors.borderPrimary};
   padding: 0 0 36px;
   margin-top: 92px;
+  @media ${breakpoints.small} {
+    margin-top: 40px;
+    padding: 0 0 15px;
+  }
 `;
 
 export const carName = css`
@@ -20,6 +31,9 @@ export const carName = css`
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDarkest};
+  @media ${breakpoints.small} {
+    ${fontSizeCarDescriptionBase}
+  }
 `;
 
 export const carYear = css`
@@ -27,18 +41,28 @@ export const carYear = css`
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDark};
+  @media ${breakpoints.small} {
+    ${fontSizeCarDescriptionSmall}
+  }
 `;
 
 export const detailsContainer = css`
   display: flex;
   justify-content: space-between;
   margin-top: 60px;
+  @media ${breakpoints.small} {
+    flex-direction: column;
+    margin-top: 30px;
+  }
 `;
 
 export const detailsText = css`
   ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
   font-weight: ${fontWeight.regular};
+  @media ${breakpoints.small} {
+    ${fontSizeMedium}
+  }
 `;
 
 export const details = css`
@@ -49,6 +73,13 @@ export const details = css`
   & > :last-child {
     margin-top: 50px;
   }
+  @media ${breakpoints.small} {
+    margin-top: 15px;
+    width: 100%;
+    & > :nth-of-type(2) {
+      margin-top: 20px;
+    }
+  }
 `;
 
 export const detailsInnerContainer = css`
@@ -58,6 +89,11 @@ export const detailsInnerContainer = css`
   & > :nth-of-type(n + 2) {
     margin-top: 40px;
   }
+  @media ${breakpoints.small} {
+    & > :nth-of-type(n + 2) {
+      margin-top: 25px;
+    }
+  }
 `;
 
 export const detailsHeading = css`
@@ -65,11 +101,17 @@ export const detailsHeading = css`
   justify-content: space-between;
   align-items: flex-end;
   padding: 0 0 20px;
-  border-bottom: 1px solid ${colors.borderPrimaryDark};
+  border-bottom: 1px solid ${colors.borderPrimaryLight};
   h2 {
     ${fontSizeLarge}
     color: ${colors.textPrimaryDarker};
     font-weight: ${fontWeight.regular};
+  }
+  @media ${breakpoints.small} {
+    padding: 0 0 10px;
+    h2 {
+      ${fontSizeMedium};
+    }
   }
 `;
 
@@ -90,5 +132,8 @@ export const totalPriceContainer = css`
   color: ${colors.textPrimaryDarker};
   p:nth-of-type(2) {
     color: ${colors.textPrimaryDarkest};
+  }
+  @media ${breakpoints.small} {
+    ${fontSizeMedium};
   }
 `;

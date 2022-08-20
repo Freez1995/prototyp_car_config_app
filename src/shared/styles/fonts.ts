@@ -50,6 +50,12 @@ export const fontSizeHuge = css`
   line-height: 72px;
 `;
 
+export const fontSizeCarDescriptionSmall = css`
+  font-size: 22px;
+  line-height: 20px;
+  letter-spacing: -2px;
+`;
+
 export const fontSizeCarDescriptionBase = css`
   font-size: 28px;
   line-height: 32px;

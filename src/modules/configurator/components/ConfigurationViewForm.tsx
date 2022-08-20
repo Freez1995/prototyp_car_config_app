@@ -33,16 +33,18 @@ export const ConfigurationViewForm: React.FC = () => {
   return (
     <div>
       <Navbar>
-        <Link
-          css={styles.editConfiguration}
-          to="/configurator-exterior"
-          replace={true}
-        >
-          Edit configuration
-        </Link>
-        <Link css={styles.deleteConfiguration} to="/select-car">
-          Delete
-        </Link>
+        <div css={styles.configurationOptions}>
+          <Link
+            css={styles.editConfiguration}
+            to="/configurator-exterior"
+            replace={true}
+          >
+            Edit configuration
+          </Link>
+          <Link css={styles.deleteConfiguration} to="/select-car">
+            Delete
+          </Link>
+        </div>
       </Navbar>
       <section css={styles.contentWrapper}>
         <Carousel type="carDetailsCarousel">

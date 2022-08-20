@@ -19,8 +19,10 @@ export const Navbar: React.FC<Props> = ({ children, extraStyles }) => {
     <nav css={styles.navbar}>
       <Link css={styles.backButton} to="/">
         <img src={leftArrow} />
-        <p css={styles.yearText}>{selectedCar.carYear}</p>
-        <p css={styles.modelText}>{selectedCar.carModel.toUpperCase()}</p>
+        <div css={styles.navbarTextContainer}>
+          <p css={styles.yearText}>{selectedCar.carYear}</p>
+          <p css={styles.modelText}>{selectedCar.carModel.toUpperCase()}</p>
+        </div>
       </Link>
       <div css={extraStyles}>{children}</div>
     </nav>

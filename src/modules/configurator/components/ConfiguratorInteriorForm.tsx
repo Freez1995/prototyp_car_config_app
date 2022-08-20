@@ -42,15 +42,18 @@ export const ConfiguratorInteriorForm: React.FC = () => {
         />
         <div css={styles.sidebar}>
           <div css={styles.sidebarContainer}>
-            <SidebarCard
-              itemImage={selectedInterior.iconUrl}
-              itemName={selectedInterior.interiorName}
-              itemType="color"
-              handleItemClick={handleSidebarInteriorSelect}
-            />
-          </div>
-          <div>
+            <div css={styles.sidebarItemContainer}>
+              <SidebarCard
+                itemImage={selectedInterior.iconUrl}
+                itemName={selectedInterior.interiorName}
+                itemType="color"
+                handleItemClick={handleSidebarInteriorSelect}
+              />
+            </div>
             <TotalPriceCard direction="row" />
+          </div>
+
+          <div>
             <Link to="/configurator-summary" css={styles.sidebarButton}>
               Summary
               <RightArrow css={styles.buttonImage} />

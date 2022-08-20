@@ -58,26 +58,28 @@ export const ConfiguratorExteriorForm: React.FC = () => {
         />
         <div css={styles.sidebar}>
           <div css={styles.sidebarContainer}>
-            <SidebarCard
-              itemImage={selectedColor.iconUrl}
-              itemName={selectedColor.colorName}
-              itemType="paint color"
-              handleItemClick={handleSidebarColorSelect}
-            />
-            <SidebarCard
-              itemImage={selectedWheels.iconUrl}
-              itemName={selectedWheels.wheelsModel}
-              itemType="wheels"
-              handleItemClick={handleSidebarWheelsSelect}
-            />
-          </div>
-          <div>
+            <div css={styles.sidebarItemContainer}>
+              <SidebarCard
+                itemImage={selectedColor.iconUrl}
+                itemName={selectedColor.colorName}
+                itemType="paint color"
+                handleItemClick={handleSidebarColorSelect}
+              />
+              <SidebarCard
+                itemImage={selectedWheels.iconUrl}
+                itemName={selectedWheels.wheelsModel}
+                itemType="wheels"
+                handleItemClick={handleSidebarWheelsSelect}
+              />
+            </div>
+
             <TotalPriceCard direction="row" />
-            <Link to="/configurator-interior" css={styles.sidebarButton}>
-              Interior
-              <RightArrow css={styles.buttonImage} />
-            </Link>
           </div>
+
+          <Link to="/configurator-interior" css={styles.sidebarButton}>
+            Interior
+            <RightArrow css={styles.buttonImage} />
+          </Link>
         </div>
       </section>
     </div>

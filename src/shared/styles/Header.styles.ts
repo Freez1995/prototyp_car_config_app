@@ -17,7 +17,8 @@ export const header = css`
   background-color: ${colors.backgroundPrimaryDarkest};
   padding: 0 40px;
   @media ${breakpoints.small} {
-    padding: 0 10px;
+    height: 70px;
+    padding: 0 20px;
   }
 `;
 
