@@ -1,6 +1,12 @@
 import { css } from '@emotion/react';
 import { fontSizeSmall, fontSizeTiny } from './fonts';
-import { boxShadow, colors, fontFamily, fontWeight } from './variables';
+import {
+  boxShadow,
+  breakpoints,
+  colors,
+  fontFamily,
+  fontWeight,
+} from './variables';
 
 export const header = css`
   position: relative;
@@ -10,6 +16,10 @@ export const header = css`
   height: 80px;
   background-color: ${colors.backgroundPrimaryDarkest};
   padding: 0 40px;
+  @media ${breakpoints.small} {
+    height: 70px;
+    padding: 0 20px;
+  }
 `;
 
 export const navbar = css`

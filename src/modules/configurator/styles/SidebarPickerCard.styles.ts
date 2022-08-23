@@ -1,6 +1,10 @@
 import { css } from '@emotion/react';
-import { fontSizeBase, fontSizeSmall } from 'shared/styles/fonts';
-import { colors, fontFamily } from 'shared/styles/variables';
+import {
+  fontSizeBase,
+  fontSizeMicro,
+  fontSizeSmall,
+} from 'shared/styles/fonts';
+import { breakpoints, colors, fontFamily } from 'shared/styles/variables';
 
 export const inputRadioButton = css`
   display: none;
@@ -22,7 +26,9 @@ export const radioImageContainer = css`
 export const radioItemImage = css`
   border-radius: 50%;
   width: 60px;
-  height: 60px;
+  @media ${breakpoints.small} {
+    width: 45px;
+  }
 `;
 
 export const radioCheckedIcon = css`
@@ -53,9 +59,15 @@ export const radioItemName = css`
   ${fontSizeBase}
   color: ${colors.textPrimaryDarkest};
   margin-bottom: 4px;
+  @media ${breakpoints.small} {
+    ${fontSizeSmall}
+  }
 `;
 
 export const radioItemPrice = css`
   ${fontSizeSmall}
   color: ${colors.textPrimaryDark};
+  @media ${breakpoints.small} {
+    ${fontSizeMicro}
+  }
 `;

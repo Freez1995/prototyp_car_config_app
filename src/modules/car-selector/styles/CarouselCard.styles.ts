@@ -2,10 +2,12 @@ import { css } from '@emotion/react';
 import {
   fontSizeCarDescriptionBase,
   fontSizeCarDescriptionLarge,
+  fontSizeMicro,
   fontSizeSmall,
 } from 'shared/styles/fonts';
 import {
   boxShadow,
+  breakpoints,
   colors,
   fontFamily,
   fontWeight,
@@ -29,10 +31,31 @@ export const card = css`
     object-fit: cover;
     object-position: 81%;
   }
+  @media ${breakpoints.medium} {
+    min-width: 450px;
+    min-height: 500px;
+    margin-bottom: 40px;
+    img {
+      height: 400px;
+      object-position: 66%;
+    }
+  }
+  @media ${breakpoints.small} {
+    min-width: 250px;
+    min-height: 300px;
+    margin-bottom: 40px;
+    img {
+      height: 200px;
+      object-position: 70%;
+    }
+  }
 `;
 
 export const contentContainer = css`
   padding: 60px 40px 40px;
+  @media ${breakpoints.small} {
+    padding: 40px 10px 20px;
+  }
 `;
 
 export const carYearText = css`
@@ -46,6 +69,9 @@ export const carModelText = css`
   font-family: ${fontFamily.opticianSans};
   font-weight: ${fontWeight.regular};
   color: ${colors.textPrimaryDarkest};
+  @media ${breakpoints.small} {
+    ${fontSizeCarDescriptionBase}
+  }
 `;
 
 export const cardButton = css`
@@ -62,5 +88,8 @@ export const cardButton = css`
   &:active {
     background-color: ${colors.globalPrimary};
     box-shadow: ${boxShadow.shadowItemClicked};
+  }
+  @media ${breakpoints.small} {
+    ${fontSizeMicro}
   }
 `;

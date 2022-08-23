@@ -1,6 +1,15 @@
 import { css } from '@emotion/react';
-import { fontSizeBase, fontSizeLarge } from 'shared/styles/fonts';
-import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
+import {
+  fontSizeBase,
+  fontSizeLarge,
+  fontSizeMedium,
+} from 'shared/styles/fonts';
+import {
+  breakpoints,
+  colors,
+  fontFamily,
+  fontWeight,
+} from 'shared/styles/variables';
 
 export const selectorSidebar = css`
   position: absolute;
@@ -17,11 +26,27 @@ export const selectorSidebar = css`
   border-left: 1px solid ${colors.borderPrimaryLight};
   transition: all 0.5s;
   overflow-x: hidden;
+  @media ${breakpoints.small} {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border: none;
+  }
 `;
 
 export const selectorSidebarActive = css`
   width: 356px;
   height: 100%;
+  @media ${breakpoints.medium} {
+    width: 320px;
+    height: 100%;
+  }
+  @media ${breakpoints.small} {
+    width: 100%;
+    height: 300px;
+  }
 `;
 
 export const selectorSidebarContainer = css`
@@ -31,6 +56,9 @@ export const selectorSidebarContainer = css`
   min-width: max-content;
   flex: 1;
   padding: 24px 40px 0;
+  @media ${breakpoints.small} {
+    padding: 24px 20px;
+  }
 `;
 
 export const sidebarContentContainer = css`
@@ -49,6 +77,9 @@ export const headingText = css`
   color: ${colors.textPrimaryDarkest};
   &::first-letter {
     text-transform: capitalize;
+  }
+  @media ${breakpoints.small} {
+    ${fontSizeMedium}
   }
 `;
 
@@ -72,6 +103,14 @@ export const selectorSidebarCard = css`
   & > :nth-of-type(n + 2) {
     margin-top: 40px;
   }
+  @media ${breakpoints.small} {
+    & > :first-of-type {
+      margin-top: 20px;
+    }
+    & > :nth-of-type(n + 2) {
+      margin-top: 20px;
+    }
+  }
 `;
 
 export const doneButton = css`
@@ -83,4 +122,8 @@ export const doneButton = css`
   color: ${colors.textPrimaryLightest};
   font-weight: ${fontWeight.bold};
   border: none;
+  @media ${breakpoints.small} {
+    margin-top: 0;
+    padding: 12px;
+  }
 `;

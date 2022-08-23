@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { fontSizeMedium } from 'shared/styles/fonts';
-import { colors, fontWeight } from 'shared/styles/variables';
+import { fontSizeBase, fontSizeMedium } from 'shared/styles/fonts';
+import { breakpoints, colors, fontWeight } from 'shared/styles/variables';
 
 export const detailsCard = css`
   ${fontSizeMedium}
@@ -8,6 +8,9 @@ export const detailsCard = css`
   justify-content: space-between;
   font-weight: ${fontWeight.regular};
   align-items: center;
+  @media ${breakpoints.small} {
+    ${fontSizeBase}
+  }
 `;
 
 export const detailsFigure = css`
@@ -19,6 +22,10 @@ export const detailsFigureImage = css`
   width: 60px;
   border-radius: 50%;
   margin-right: 20px;
+  @media ${breakpoints.small} {
+    width: 45px;
+    margin-right: 10px;
+  }
 `;
 export const detailsFigureText = css`
   color: ${colors.textPrimaryDarkest};

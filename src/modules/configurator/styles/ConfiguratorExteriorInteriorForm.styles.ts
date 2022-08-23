@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { fontSizeBase } from 'shared/styles/fonts';
-import { colors, fontWeight } from 'shared/styles/variables';
+import { breakpoints, colors, fontWeight } from 'shared/styles/variables';
 
 export const configurationContainer = css`
   position: relative;
@@ -13,26 +13,56 @@ export const contentContainer = css`
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  @media ${breakpoints.small} {
+    flex-direction: column;
+  }
 `;
 
 export const carouselSiderContainer = css`
-  margin: auto;
+  margin: 178px auto;
   flex-grow: 1;
+  @media ${breakpoints.small} {
+    margin: 30px 0 50px;
+    flex: 0;
+  }
 `;
 
 export const sidebar = css`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-width: 356px;
   background-color: ${colors.backgroundPrimaryLightest};
   border-left: 1px solid ${colors.borderPrimaryLight};
+  @media ${breakpoints.medium} {
+    min-width: 0;
+    width: 320px;
+  }
+  @media ${breakpoints.small} {
+    min-width: 100%;
+    min-height: 300px;
+    border: none;
+  }
 `;
 
 export const sidebarContainer = css`
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 40px 0;
+  flex-grow: 1;
+  @media ${breakpoints.small} {
+    padding: 24px 20px;
+  }
+`;
+
+export const sidebarItemContainer = css`
   & > :nth-of-type(n + 2) {
     margin-top: 40px;
+  }
+  @media ${breakpoints.small} {
+    & > :nth-of-type(n + 2) {
+      margin-top: 20px;
+    }
   }
 `;
 
@@ -47,6 +77,10 @@ export const sidebarButton = css`
   margin-top: 24px;
   color: ${colors.textPrimaryLightest};
   font-weight: ${fontWeight.bold};
+  @media ${breakpoints.small} {
+    margin-top: 0;
+    padding: 18px 0;
+  }
 `;
 
 export const buttonImage = css`

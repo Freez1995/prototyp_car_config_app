@@ -1,6 +1,11 @@
 import { css } from '@emotion/react';
-import { fontSizeLarge, fontSizeSmall } from 'shared/styles/fonts';
-import { colors, fontWeight } from 'shared/styles/variables';
+import {
+  fontSizeLarge,
+  fontSizeMedium,
+  fontSizeSmall,
+  fontSizeTiny,
+} from 'shared/styles/fonts';
+import { breakpoints, colors, fontWeight } from 'shared/styles/variables';
 
 export const containerColumn = css`
   display: flex;
@@ -16,6 +21,14 @@ export const containerRow = css`
   grid-template-columns: auto auto;
   column-gap: 56px;
   min-width: max-content;
+  @media ${breakpoints.medium} {
+    column-gap: 20px;
+  }
+  @media ${breakpoints.small} {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
 `;
 
 export const priceFigure = css`
@@ -30,9 +43,15 @@ export const priceFigureText = css`
   letter-spacing: 2px;
   color: ${colors.textPrimary};
   font-weight: ${fontWeight.regular};
+  @media ${breakpoints.medium} {
+    ${fontSizeTiny}
+  }
 `;
 
 export const priceText = css`
   ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
+  @media ${breakpoints.medium} {
+    ${fontSizeMedium}
+  }
 `;

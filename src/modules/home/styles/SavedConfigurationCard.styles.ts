@@ -4,7 +4,12 @@ import {
   fontSizeSmall,
   fontSizeTiny,
 } from 'shared/styles/fonts';
-import { colors, fontFamily, fontWeight } from 'shared/styles/variables';
+import {
+  breakpoints,
+  colors,
+  fontFamily,
+  fontWeight,
+} from 'shared/styles/variables';
 
 export const cardContainer = css`
   display: grid;
@@ -14,26 +19,49 @@ export const cardContainer = css`
   background-color: ${colors.backgroundPrimaryLightest};
   margin: 0 auto;
   padding: 20px 26px 25px 40px;
+  @media ${breakpoints.small} {
+    display: block;
+    position: relative;
+    min-width: 100%;
+    max-height: 100%;
+    padding: 0 15px;
+  }
 `;
 
 export const cardContentContainer = css`
   display: flex;
   align-items: flex-end;
+  @media ${breakpoints.small} {
+    flex-direction: column;
+    height: fit-content;
+  }
 `;
 
 export const dropdownContainer = css`
   position: relative;
+  @media ${breakpoints.small} {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 `;
 
 export const imageContainer = css`
   width: 420px;
-  height: 135px;
+  height: 100%;
+  @media ${breakpoints.small} {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 export const carImage = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  @media ${breakpoints.small} {
+    object-fit: cover;
+  }
 `;
 
 export const carInfoContainer = css`
@@ -43,6 +71,12 @@ export const carInfoContainer = css`
   font-weight: ${fontWeight.regular};
   padding-left: 28px;
   border-left: 1px solid ${colors.borderPrimaryLight};
+  @media ${breakpoints.small} {
+    border-top: 1px solid ${colors.borderPrimaryLight};
+    border-left: none;
+    width: 100%;
+    padding: 10px 0;
+  }
 `;
 
 export const carYearText = css`
@@ -66,6 +100,9 @@ export const carColorText = css`
   color: ${colors.textPrimaryDarker};
   margin-top: 8px;
   margin-bottom: 32px;
+  @media ${breakpoints.small} {
+    margin-bottom: 10px;
+  }
 `;
 
 export const carDateText = css`
