@@ -60,6 +60,9 @@ export const detailsText = css`
   ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
   font-weight: ${fontWeight.regular};
+  @media ${breakpoints.medium} {
+    margin-right: 20px;
+  }
   @media ${breakpoints.small} {
     ${fontSizeMedium}
   }

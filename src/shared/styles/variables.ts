@@ -76,8 +76,5 @@ export const fontWeight = {
 
 export const breakpoints = {
   small: 'screen and (max-width: 767px)',
-  medium: 'screen and (min-width: 768px)',
-  large: 'screen and (min-width: 1280px)',
-  xLarge: 'screen and (min-width: 1480px)',
-  xxLarge: 'screen and (min-width: 1600px)',
+  medium: 'screen and (max-width: 1439px)',
 };

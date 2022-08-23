@@ -26,10 +26,16 @@ export const footerCarDetails = css`
   align-items: center;
   margin-left: 40px;
   font-family: ${fontFamily.opticianSans};
-  @media ${breakpoints.small} {
-    margin: 10px;
+  @media ${breakpoints.medium} {
     flex-direction: column;
+    margin-left: 20px;
+    justify-content: center;
     align-items: flex-start;
+  }
+  @media ${breakpoints.small} {
+    margin-top: 10px;
+    margin-left: 20px;
+    justify-content: center;
   }
 `;
 
@@ -60,6 +66,10 @@ export const footerButton = css`
   font-family: ${fontFamily.inter};
   font-weight: ${fontWeight.bold};
   border: none;
+  @media ${breakpoints.medium} {
+    margin-left: 15px;
+    padding: 20px 50px;
+  }
   @media ${breakpoints.small} {
     padding: 18px;
     margin: 0;

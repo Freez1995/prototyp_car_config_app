@@ -21,6 +21,9 @@ export const containerRow = css`
   grid-template-columns: auto auto;
   column-gap: 56px;
   min-width: max-content;
+  @media ${breakpoints.medium} {
+    column-gap: 20px;
+  }
   @media ${breakpoints.small} {
     display: flex;
     justify-content: space-between;
@@ -40,7 +43,7 @@ export const priceFigureText = css`
   letter-spacing: 2px;
   color: ${colors.textPrimary};
   font-weight: ${fontWeight.regular};
-  @media ${breakpoints.small} {
+  @media ${breakpoints.medium} {
     ${fontSizeTiny}
   }
 `;
@@ -48,7 +51,7 @@ export const priceFigureText = css`
 export const priceText = css`
   ${fontSizeLarge}
   color: ${colors.textPrimaryDarkest};
-  @media ${breakpoints.small} {
+  @media ${breakpoints.medium} {
     ${fontSizeMedium}
   }
 `;

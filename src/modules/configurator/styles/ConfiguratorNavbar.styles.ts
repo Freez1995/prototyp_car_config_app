@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { fontSizeBase, fontSizeTiny } from 'shared/styles/fonts';
+import { fontSizeBase, fontSizeSmall } from 'shared/styles/fonts';
 import {
   breakpoints,
   colors,
@@ -13,7 +13,8 @@ export const linkContainer = css`
   column-gap: 40px;
   align-items: center;
   @media ${breakpoints.small} {
-    column-gap: 10px;
+    column-gap: 20px;
+    margin: 15px 0 0 5px;
   }
 `;
 
@@ -26,7 +27,7 @@ export const linkNumber = css`
   font-family: ${fontFamily.inter};
   color: ${colors.textPrimary};
   @media ${breakpoints.small} {
-    ${fontSizeTiny}
+    ${fontSizeSmall}
   }
 `;
 

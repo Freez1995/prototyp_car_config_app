@@ -48,7 +48,7 @@ export const dropdownContainer = css`
 
 export const imageContainer = css`
   width: 420px;
-  height: 135px;
+  height: 100%;
   @media ${breakpoints.small} {
     width: 100%;
     padding: 10px;

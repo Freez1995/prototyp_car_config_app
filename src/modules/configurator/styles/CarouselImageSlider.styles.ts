@@ -9,10 +9,16 @@ import {
 
 export const carouselExteriorContainer = css`
   position: relative;
-  min-height: 340px;
+  min-width: 300px;
+  height: 340px;
+  overflow: hidden;
+  @media ${breakpoints.medium} {
+    height: 250px;
+    width: 100%;
+  }
   @media ${breakpoints.small} {
-    min-height: 130px;
-    min-width: 100%;
+    height: 180px;
+    width: 100%;
   }
 `;
 
@@ -20,6 +26,10 @@ export const carouselInteriorContainer = css`
   position: relative;
   height: 440px;
   margin: 0 32px 0 40px;
+  @media ${breakpoints.medium} {
+    height: 250px;
+    margin: 0 10px;
+  }
   @media ${breakpoints.small} {
     height: 150px;
     margin: 0 10px;
@@ -45,7 +55,7 @@ export const carouselExteriorImage = css`
   height: 100%;
   object-fit: contain;
   @media ${breakpoints.small} {
-    object-fit: cover;
+    object-fit: fill;
   }
 `;
 
@@ -54,6 +64,9 @@ export const carouselInteriorImage = css`
   height: 100%;
   object-fit: cover;
   object-position: left;
+  @media ${breakpoints.medium} {
+    object-fit: fill;
+  }
   @media ${breakpoints.small} {
     object-fit: fill;
   }
@@ -66,6 +79,10 @@ export const carouselNavigation = css`
   margin: 40px auto 0;
   font-family: ${fontFamily.inter};
   font-weight: ${fontWeight.regular};
+  @media ${breakpoints.medium} {
+    ${fontSizeBase}
+    margin: 20px auto 0;
+  }
   @media ${breakpoints.small} {
     ${fontSizeBase}
     margin: 20px auto 0;

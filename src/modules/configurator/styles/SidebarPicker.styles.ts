@@ -39,6 +39,10 @@ export const selectorSidebar = css`
 export const selectorSidebarActive = css`
   width: 356px;
   height: 100%;
+  @media ${breakpoints.medium} {
+    width: 320px;
+    height: 100%;
+  }
   @media ${breakpoints.small} {
     width: 100%;
     height: 300px;
@@ -119,6 +123,7 @@ export const doneButton = css`
   font-weight: ${fontWeight.bold};
   border: none;
   @media ${breakpoints.small} {
+    margin-top: 0;
     padding: 12px;
   }
 `;

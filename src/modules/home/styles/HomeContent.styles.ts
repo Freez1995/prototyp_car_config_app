@@ -15,6 +15,9 @@ import {
 
 export const contentWrapper = css`
   padding: 0 156px;
+  @media ${breakpoints.medium} {
+    padding: 0 40px;
+  }
   @media ${breakpoints.small} {
     padding: 0 20px;
   }
@@ -71,10 +74,19 @@ export const emptyStateContainer = css`
     opacity: 0.1;
     margin-bottom: 24px;
   }
+  @media ${breakpoints.medium} {
+    ${fontSizeSmall};
+    margin-top: 130px;
+    img {
+      width: 100%;
+    }
+  }
   @media ${breakpoints.small} {
     ${fontSizeSmall};
-    overflow: hidden;
-    margin-top: 90px;
+    margin-top: 130px;
+    img {
+      width: 100%;
+    }
   }
 `;
 

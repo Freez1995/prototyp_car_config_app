@@ -9,6 +9,9 @@ import {
 
 export const contentWrapper = css`
   padding-left: 156px;
+  @media ${breakpoints.medium} {
+    padding-left: 40px;
+  }
   @media ${breakpoints.small} {
     padding-left: 20px;
   }

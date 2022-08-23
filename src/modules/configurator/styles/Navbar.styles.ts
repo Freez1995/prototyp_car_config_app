@@ -14,6 +14,8 @@ export const navbar = css`
   border-bottom: 1px solid ${colors.borderPrimaryLight};
   @media ${breakpoints.small} {
     padding: 24px 10px;
+    flex-direction: column;
+    align-items: start;
   }
 `;
 
@@ -26,14 +28,15 @@ export const backButton = css`
   column-gap: 12px;
   @media ${breakpoints.small} {
     ${fontSizeCarDescriptionSmall}
+    display: flex;
     column-gap: 5px;
+    align-items: center;
   }
 `;
 
 export const navbarTextContainer = css`
   display: flex;
   @media ${breakpoints.small} {
-    flex-direction: column;
     margin-left: 5px;
   }
 `;
@@ -41,10 +44,6 @@ export const navbarTextContainer = css`
 export const yearText = css`
   color: ${colors.textPrimary};
   margin-right: 12px;
-  @media ${breakpoints.small} {
-    margin-right: 0;
-    margin-bottom: 5px;
-  }
 `;
 
 export const modelText = css`

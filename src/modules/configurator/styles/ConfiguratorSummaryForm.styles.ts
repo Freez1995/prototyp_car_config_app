@@ -14,6 +14,9 @@ import {
 
 export const summaryWrapper = css`
   padding: 40px 156px;
+  @media ${breakpoints.medium} {
+    padding: 40px 30px;
+  }
   @media ${breakpoints.small} {
     padding: 40px 20px;
   }

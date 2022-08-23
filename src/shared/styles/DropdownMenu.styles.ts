@@ -18,7 +18,8 @@ export const headerDropdown = css`
   right: -40px;
   top: 60px;
   @media ${breakpoints.small} {
-    right: -10px;
+    right: -20px;
+    top: 55px;
   }
 `;
 

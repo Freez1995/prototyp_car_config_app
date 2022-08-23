@@ -31,9 +31,19 @@ export const card = css`
     object-fit: cover;
     object-position: 81%;
   }
+  @media ${breakpoints.medium} {
+    min-width: 450px;
+    min-height: 500px;
+    margin-bottom: 40px;
+    img {
+      height: 400px;
+      object-position: 66%;
+    }
+  }
   @media ${breakpoints.small} {
     min-width: 250px;
     min-height: 300px;
+    margin-bottom: 40px;
     img {
       height: 200px;
       object-position: 70%;

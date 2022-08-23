@@ -19,10 +19,10 @@ export const contentContainer = css`
 `;
 
 export const carouselSiderContainer = css`
-  margin: auto;
+  margin: 178px auto;
   flex-grow: 1;
   @media ${breakpoints.small} {
-    margin: 60px 0;
+    margin: 30px 0 50px;
     flex: 0;
   }
 `;
@@ -33,8 +33,13 @@ export const sidebar = css`
   min-width: 356px;
   background-color: ${colors.backgroundPrimaryLightest};
   border-left: 1px solid ${colors.borderPrimaryLight};
+  @media ${breakpoints.medium} {
+    min-width: 0;
+    width: 320px;
+  }
   @media ${breakpoints.small} {
-    min-width: 100px;
+    min-width: 100%;
+    min-height: 300px;
     border: none;
   }
 `;

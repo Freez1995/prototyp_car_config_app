@@ -4,6 +4,9 @@ import { breakpoints, colors, fontFamily } from 'shared/styles/variables';
 
 export const contentWrapper = css`
   padding: 40px 156px;
+  @media ${breakpoints.medium} {
+    padding: 60px 30px;
+  }
   @media ${breakpoints.small} {
     padding: 40px 20px;
   }
@@ -11,9 +14,7 @@ export const contentWrapper = css`
 
 export const configurationOptions = css`
   @media ${breakpoints.small} {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    margin: 10px 0 0 5px;
   }
 `;
 
@@ -24,7 +25,7 @@ export const editConfiguration = css`
   margin-right: 40px;
   @media ${breakpoints.small} {
     ${fontSizeSmall}
-    margin: 0 0 5px 0;
+    margin-right: 15px;
   }
 `;
 
